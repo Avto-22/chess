@@ -1,0 +1,65 @@
+.chess-board{
+    display:flex;
+    flex-wrap:no-wrap;
+    flex-direction:column;
+    border:5px solid black;
+    border-radius:10px;
+    justify-content:center;
+    margin-right:auto;
+    margin-left: auto;
+    padding: 0px;
+    width: 450px;
+    height: 480px;
+    margin-top: 60px;
+}
+div{
+    text-align:center;
+}
+
+.tray{
+    width:60px;
+    height:60px;
+    cursor:pointer;
+    border-radius:1px;
+    transition:.3s;
+}
+
+.tray img{
+    width:80%;
+    height:80%;
+    
+    margin-top:5px;
+}
+
+.tray:hover{
+    background-color:gold;
+}
+
+.green-tray{
+    background-color: green;
+}
+
+.green{
+    background-color: green;
+}
+
+.submit-btn p{
+    padding:5px;
+    border:2px solid black;
+    cursor:pointer;
+    transition:1s;
+}
+.submit-btn p:hover{
+    transform:scale(1.1);
+    background-color:black;
+    color:white;
+}
+.submit-btn{
+    display:flex;
+    justify-content:center;
+}
+
+.rotate-board{
+    transition: 2.5s;
+    transform: rotate(180deg);
+}
