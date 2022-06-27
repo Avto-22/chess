@@ -21,18 +21,25 @@ export class FigureRulesService {
   }
 
   getOpponentColor(positionX: number, positionY: number, app: AppComponent): string {
-    let color: string;
+    let color: string='';
     if (Object.values(app).find(x => x.color == 'white' && x.positionX == positionX && x.positionY == positionY)) {
       color = 'black';
     }
-    else {
+    else if (Object.values(app).find(x => x.color == 'black' && x.positionX == positionX && x.positionY == positionY)){
       color = 'white';
     }
     return color;
   }
 
   getFigureColor(positionX: number, positionY: number, app: AppComponent): string {
-    return Object.values(app).find(x => x.color == 'white' && x.positionX == positionX && x.positionY == positionY)?.color;
+    let color: string='';
+    if (Object.values(app).find(x => x.color == 'white' && x.positionX == positionX && x.positionY == positionY)) {
+      color = 'white';
+    }
+    else if(Object.values(app).find(x => x.color == 'black' && x.positionX == positionX && x.positionY == positionY)) {
+      color = 'black';
+    }
+    return color;
   }
 
   changeFigure(positionX: number, positionY: number, nextPositionX: number, nextPositionY: number, app: AppComponent) {
@@ -282,14 +289,12 @@ export class FigureRulesService {
   changePosition(positionX: number, positionY: number, app: AppComponent) {
     if (this.checkFigure(positionX, positionY, app)) {
       if (!this.checkFigure(app.nextPosition.positionX, app.nextPosition.positionY, app)) {
-        console.log('shemovedi');
         app.nextPosition = {
           positionX: Object.values(app).find(x => x.positionX == positionX && x.positionY == positionY).positionX,
           positionY: Object.values(app).find(x => x.positionX == positionX && x.positionY == positionY).positionY
         }
       }
     } if (!this.checkFigure(positionX, positionY, app) || this.checkFigure(positionX, positionY, app)) {
-      console.log('shemosuli figura: ', Object.values(app).find(x => x.positionX == app.nextPosition.positionX && x.positionY == app.nextPosition.positionY));
       if (this.scannFigure(app.whiteKing, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKing(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           app.whiteKing = {
@@ -298,6 +303,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -310,6 +316,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -322,6 +329,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -334,6 +342,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -347,6 +356,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -361,6 +371,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -373,6 +384,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -385,6 +397,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -399,6 +412,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -411,6 +425,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -423,6 +438,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -435,6 +451,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -447,6 +464,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -462,6 +480,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -474,6 +493,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -486,6 +506,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         }
         else {
           console.log('invalid position')
@@ -498,6 +519,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }
@@ -510,6 +532,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }
@@ -521,6 +544,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }
@@ -532,6 +556,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }
@@ -543,6 +568,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }
@@ -554,6 +580,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }
@@ -565,6 +592,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }
@@ -576,6 +604,7 @@ export class FigureRulesService {
             positionX,
             positionY
           }
+          return;
         } else {
           console.log('invalid position')
         }

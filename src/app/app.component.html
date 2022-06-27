@@ -4,49 +4,103 @@
       <div (click)="figureRulesService.changePosition(row,column,this)" *ngFor="let column of columnrray" class="tray"
         [ngClass]="{'green-tray':(column%2==0 && row%2!=0), 'green':(column%2!=0 && row%2==0)}">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/rock.png" *ngIf="figureRulesService.scannFigure(whiteRock,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-rock.png" *ngIf="figureRulesService.scannFigure(blackRock,row,column)" >
+        <p *ngIf='column==1' style="position: absolute; left:-20px;top:0px;">{{row}}</p>
+        <p *ngIf='column==8' style="position: absolute; right:-20px;top:0px; transform: rotate(180deg);">{{row}}</p>
+        <p *ngIf='row==1' style="position: absolute; left:20px;top:-40px; transform: rotate(180deg);">
+          {{column==8?'A':''}}
+          {{column==7?'B':''}}
+          {{column==6?'C':''}}
+          {{column==5?'D':''}}
+          {{column==4?'E':''}}
+          {{column==3?'F':''}}
+          {{column==2?'G':''}}
+          {{column==1?'H':''}}
+        </p>
+        <p *ngIf='row==8' style="position: absolute; right:20px;bottom:-40px;">
+          {{column==8?'A':''}}
+          {{column==7?'B':''}}
+          {{column==6?'C':''}}
+          {{column==5?'D':''}}
+          {{column==4?'E':''}}
+          {{column==3?'F':''}}
+          {{column==2?'G':''}}
+          {{column==1?'H':''}}
+        </p>
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/knight.png" *ngIf="figureRulesService.scannFigure(whiteKnight,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-knight.png" *ngIf="figureRulesService.scannFigure(blackKnight,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/rock.png"
+          *ngIf="figureRulesService.scannFigure(whiteRock,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-rock.png"
+          *ngIf="figureRulesService.scannFigure(blackRock,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/knight.png"
+          *ngIf="figureRulesService.scannFigure(whiteKnight,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-knight.png"
+          *ngIf="figureRulesService.scannFigure(blackKnight,row,column)">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/bishop.png" *ngIf="figureRulesService.scannFigure(whiteBishop,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-bishop.png" *ngIf="figureRulesService.scannFigure(blackBishop,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/bishop.png"
+          *ngIf="figureRulesService.scannFigure(whiteBishop,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-bishop.png"
+          *ngIf="figureRulesService.scannFigure(blackBishop,row,column)">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/queen.png" *ngIf="figureRulesService.scannFigure(whiteQueen,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-queen.png" *ngIf="figureRulesService.scannFigure(blackQueen,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/queen.png"
+          *ngIf="figureRulesService.scannFigure(whiteQueen,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-queen.png"
+          *ngIf="figureRulesService.scannFigure(blackQueen,row,column)">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/king.png" *ngIf="figureRulesService.scannFigure(whiteKing,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-king.png" *ngIf="figureRulesService.scannFigure(blackKing,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/king.png"
+          *ngIf="figureRulesService.scannFigure(whiteKing,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-king.png"
+          *ngIf="figureRulesService.scannFigure(blackKing,row,column)">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/bishop.png" *ngIf="figureRulesService.scannFigure(whiteBishop2,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-bishop.png" *ngIf="figureRulesService.scannFigure(blackBishop2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/bishop.png"
+          *ngIf="figureRulesService.scannFigure(whiteBishop2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-bishop.png"
+          *ngIf="figureRulesService.scannFigure(blackBishop2,row,column)">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/knight.png" *ngIf="figureRulesService.scannFigure(whiteKnight2,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-knight.png" *ngIf="figureRulesService.scannFigure(blackKnight2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/knight.png"
+          *ngIf="figureRulesService.scannFigure(whiteKnight2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-knight.png"
+          *ngIf="figureRulesService.scannFigure(blackKnight2,row,column)">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/rock.png" *ngIf="figureRulesService.scannFigure(whiteRock2,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-rock.png" *ngIf="figureRulesService.scannFigure(blackRock2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/rock.png"
+          *ngIf="figureRulesService.scannFigure(whiteRock2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-rock.png"
+          *ngIf="figureRulesService.scannFigure(blackRock2,row,column)">
 
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn1,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn2,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn3,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn4,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn5,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn6,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn7,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png" *ngIf="figureRulesService.scannFigure(whitePawn8,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn1,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn3,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn4,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn5,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn6,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn7,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/pawn.png"
+          *ngIf="figureRulesService.scannFigure(whitePawn8,row,column)">
 
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn1,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn2,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn3,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn4,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn5,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn6,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn7,row,column)">
-        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png" *ngIf="figureRulesService.scannFigure(blackPawn8,row,column)">
-       
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn1,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn2,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn3,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn4,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn5,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn6,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn7,row,column)">
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
+          *ngIf="figureRulesService.scannFigure(blackPawn8,row,column)">
+
       </div>
     </div>
   </div>
