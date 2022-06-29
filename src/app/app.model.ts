@@ -1,5 +1,6 @@
 export interface Figure {
     name: string;
+    color:string;
     positionX: number;
     positionY: number;
   }

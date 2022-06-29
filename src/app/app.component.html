@@ -108,3 +108,20 @@
 <div class="submit-btn">
   <p (click)="submit()">დადასტურება</p>
 </div>
+<div class="kill-white-figure">
+  <img *ngFor="let figure of deletedWhiteFigure" [src]="'../assets/images/'+figure.name+'.png'">
+</div>
+<div class="kill-black-figure">
+  <img *ngFor="let figure of deletedBlackFigure" [src]="'../assets/images/'+figure.name+'.png'">
+</div>
+<div *ngIf="chooseWhite" class="choose-figure">
+  <div>
+    <img (click)='chooseFigure()' *ngFor="let figure of chooseWhiteFigure"[src]="'../assets/images/'+figure+'.png'">
+  </div>
+</div>
+<div *ngIf='chooseBlack' class="choose-figure">
+  <div>
+    <img (click)='chooseFigure()' *ngFor="let figure of chooseBlackFigure"[src]="'../assets/images/'+figure+'.png'">
+  </div>
+</div>
+

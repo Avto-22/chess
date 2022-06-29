@@ -1,67 +1,109 @@
-.chess-board{
-    display:flex;
-    flex-wrap:no-wrap;
-    flex-direction:column;
-    border:5px solid black;
-    border-radius:10px;
-    justify-content:center;
-    margin-right:auto;
+.chess-board {
+    display: flex;
+    flex-wrap: no-wrap;
+    flex-direction: column;
+    border: 5px solid black;
+    border-radius: 10px;
+    justify-content: center;
+    margin-right: auto;
     margin-left: auto;
     padding: 0px;
     width: 450px;
     height: 480px;
     margin-top: 60px;
-}
-div{
-    text-align:center;
-}
-
-.tray{
-    width:60px;
-    height:60px;
-    cursor:pointer;
-    border-radius:1px;
-    transition:.3s;
     position:relative;
 }
 
-.tray img{
-    width:80%;
-    height:80%;
-    
-    margin-top:5px;
+div {
+    text-align: center;
 }
 
-.tray:hover{
-    background-color:gold;
+.tray {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border-radius: 1px;
+    transition: .3s;
+    position: relative;
 }
 
-.green-tray{
+.tray img {
+    width: 80%;
+    height: 80%;
+
+    margin-top: 5px;
+}
+
+.tray:hover {
+    background-color: gold;
+}
+
+.green-tray {
     background-color: green;
 }
 
-.green{
+.green {
     background-color: green;
 }
 
-.submit-btn p{
-    padding:5px;
-    border:2px solid black;
-    cursor:pointer;
-    transition:1s;
-}
-.submit-btn p:hover{
-    transform:scale(1.1);
-    background-color:black;
-    color:white;
-}
-.submit-btn{
-    display:flex;
-    justify-content:center;
-    margin-top:10px;
+.submit-btn p {
+    padding: 5px;
+    border: 2px solid black;
+    cursor: pointer;
+    transition: 1s;
+    width:110px;
+    margin-left:auto;
+    margin-right:auto;
 }
 
-.rotate-board{
+.submit-btn p:hover {
+    transform: scale(1.1);
+    background-color: black;
+    color: white;
+}
+
+.submit-btn {
+    margin-top:30px;
+}
+
+.rotate-board {
     transition: 2.5s;
     transform: rotate(180deg);
+}
+
+.kill-white-figure,
+.kill-black-figure {
+    display: flex;
+    justify-content: center;
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    flex-wrap: wrap;
+}
+
+.kill-white-figure img,
+.kill-black-figure img{
+    width: 50px;
+    height:50px;
+    margin-top: 5px;
+}
+
+.choose-figure{
+    position:fixed;
+    top:200px;
+    left:10%;
+    right:10%;
+    display:flex;
+    justify-content: center;
+    background-color:white;
+    border:10px solid black;
+    border-radius:100px;
+}
+
+.choose-figure img{
+    width:100px;
+    height:100px;
+    margin:5px;
+    cursor:pointer;
+    box-sizing:border-box;
 }

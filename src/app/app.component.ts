@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Position } from './app.model';
+import { of } from 'rxjs';
+import { Figure, Position } from './app.model';
 import {FigureRulesService} from './figure-rules.service'
 @Component({
   selector: 'app-root',
@@ -16,7 +17,21 @@ export class AppComponent implements OnInit {
     positionY: -1
   };
 
+  chooseWhiteFigure:string[]=['queen','rock','bishop','knight'];
+  chooseBlackFigure:string[]=['black-queen','black-rock','black-bishop','black-knight'];
+
+  chooseWhite:boolean=false;
+  chooseBlack:boolean=false;
+
   isSubmited: boolean;
+
+  check:boolean=false;
+
+  checkMaker:Figure;
+
+  deletedBlackFigure:Figure[]=[];
+
+  deletedWhiteFigure:Figure[]=[];
 
   whiteKing = {
     name: 'white-king',
@@ -245,6 +260,11 @@ export class AppComponent implements OnInit {
   
   submit() {
     this.isSubmited = !this.isSubmited;
+  }
+
+  chooseFigure(){
+    this.chooseWhite=false;
+    this.chooseBlack=false;
   }
 
   ngOnInit(): void {
