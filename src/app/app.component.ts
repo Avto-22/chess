@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { of } from 'rxjs';
-import { Figure, Position } from './app.model';
+import { Figure, Position, KilledFigure } from './app.model';
 import {FigureRulesService} from './figure-rules.service'
 @Component({
   selector: 'app-root',
@@ -22,6 +21,13 @@ export class AppComponent implements OnInit {
 
   chooseWhite:boolean=false;
   chooseBlack:boolean=false;
+
+  lastKilledFigure:KilledFigure={
+    killedName:'',
+    killedColor:'',
+    killedPositionX:0,
+    killedPositionY:0
+  }
 
   isSubmited: boolean;
 

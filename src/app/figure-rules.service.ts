@@ -52,270 +52,594 @@ export class FigureRulesService {
     }
   }
 
-  deleteFigure(figureName: string, app: AppComponent) {
+  deleteOrRestoreFigure(deleted: boolean, restore: boolean, figureName: string, app: AppComponent) {
+
     if (figureName == app.whitePawn1.name) {
-      app.whitePawn1 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn1 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn1]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn1]
+      if (restore) {
+        app.whitePawn1 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     }
     if (figureName == app.whitePawn2.name) {
-      app.whitePawn2 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn2 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn2]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn2]
+      if (restore) {
+        app.whitePawn2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whitePawn3.name) {
-      app.whitePawn3 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn3 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn3]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn3]
+      if (restore) {
+        app.whitePawn3 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whitePawn4.name) {
-      app.whitePawn4 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn4 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn4]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn4]
+      if (restore) {
+        app.whitePawn4 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whitePawn5.name) {
-      app.whitePawn5 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn5 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn5]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn5]
+      if (restore) {
+        app.whitePawn5 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whitePawn6.name) {
-      app.whitePawn6 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn6 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn6]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn6]
+      if (restore) {
+        app.whitePawn6 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whitePawn7.name) {
-      app.whitePawn7 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn7 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn7]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn7]
+      if (restore) {
+        app.whitePawn7 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whitePawn8.name) {
-      app.whitePawn8 = {
-        name: 'pawn',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whitePawn8 = {
+          name: 'pawn',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn8]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whitePawn8]
+      if (restore) {
+        app.whitePawn8 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whiteKing.name) {
-      app.whiteKing = {
-        name: 'king',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteKing = {
+          name: 'king',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteKing]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteKing]
+      if (restore) {
+        app.whiteKing = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
+
     } if (figureName == app.whiteQueen.name) {
-      app.whiteQueen = {
-        name: 'queen',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteQueen = {
+          name: 'queen',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteQueen]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteQueen]
+      if (restore) {
+        app.whiteQueen = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whiteRock.name) {
-      app.whiteRock = {
-        name: 'rock',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteRock = {
+          name: 'rock',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteRock]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteRock]
+      if (restore) {
+        app.whiteRock = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whiteRock2.name) {
-      app.whiteRock2 = {
-        name: 'rock',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteRock2 = {
+          name: 'rock',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteRock2]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteRock2]
+      if (restore) {
+        app.whiteRock2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whiteKnight.name) {
-      app.whiteKnight = {
-        name: 'knight',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteKnight = {
+          name: 'knight',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteKnight]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteKnight]
+      if (restore) {
+        app.whiteKnight = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whiteKnight2.name) {
-      app.whiteKnight2 = {
-        name: 'knight',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteKnight2 = {
+          name: 'knight',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteKnight2]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteKnight2]
+      if (restore) {
+        app.whiteKnight2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whiteBishop.name) {
-      app.whiteBishop = {
-        name: 'bishop',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteBishop = {
+          name: 'bishop',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteBishop]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteBishop]
+      if (restore) {
+        app.whiteBishop = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.whiteBishop2.name) {
-      app.whiteBishop2 = {
-        name: 'bishop',
-        color: 'white',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.whiteBishop2 = {
+          name: 'bishop',
+          color: 'white',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteBishop2]
       }
-      app.deletedWhiteFigure = [...app.deletedWhiteFigure, app.whiteBishop2]
+      if (restore) {
+        app.whiteBishop2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     }
 
     // ----------------------
     if (figureName == app.blackPawn1.name) {
-      app.blackPawn1 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn1 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn1]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn1]
+      if (restore) {
+        app.blackPawn1 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     }
     if (figureName == app.blackPawn2.name) {
-      app.blackPawn2 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn2 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn2]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn2]
+      if (restore) {
+        app.blackPawn2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackPawn3.name) {
-      app.blackPawn3 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn3 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn3]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn3]
+      if (restore) {
+        app.blackPawn3 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackPawn4.name) {
-      app.blackPawn4 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn4 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn4]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn4]
+      if (restore) {
+        app.blackPawn4 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackPawn5.name) {
-      app.blackPawn5 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn5 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn5]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn5]
+      if (restore) {
+
+        app.deletedBlackFigure.splice(app.deletedBlackFigure.length - 1, 2);
+        app.blackPawn5 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackPawn6.name) {
-      app.blackPawn6 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn6 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn6]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn6]
+      if (restore) {
+        app.blackPawn6 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackPawn7.name) {
-      app.blackPawn7 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn7 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn7]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn7]
+      if (restore) {
+        app.blackPawn7 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackPawn8.name) {
-      app.blackPawn8 = {
-        name: 'black-pawn',
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackPawn8 = {
+          name: 'black-pawn',
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn8]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackPawn8]
+      if (restore) {
+        app.blackPawn8 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     }
     // -----------------
     if (figureName == app.blackKing.name) {
-      app.blackKing = {
-        name: app.blackKing.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackKing = {
+          name: app.blackKing.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackKing]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackKing]
+      if (restore) {
+        app.blackKing = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackQueen.name) {
-      app.blackQueen = {
-        name: app.blackQueen.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackQueen = {
+          name: app.blackQueen.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackQueen]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackQueen]
+      if (restore) [
+        app.blackQueen = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      ]
     } if (figureName == app.blackRock.name) {
-      app.blackRock = {
-        name: app.blackRock.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackRock = {
+          name: app.blackRock.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackRock]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackRock]
+      if (restore) {
+        app.blackRock = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackRock2.name) {
-      app.blackRock2 = {
-        name: app.blackRock.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackRock2 = {
+          name: app.blackRock.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackRock2]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackRock2]
+      if (restore) {
+        app.blackRock2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackKnight.name) {
-      app.blackKnight = {
-        name: app.blackKnight.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackKnight = {
+          name: app.blackKnight.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackKnight]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackKnight]
+      if (restore) {
+        app.blackKnight = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackKnight2.name) {
-      app.blackKnight2 = {
-        name: app.blackKnight.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackKnight2 = {
+          name: app.blackKnight.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackKnight2]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackKnight2]
+      if (restore) {
+        app.blackKnight2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackBishop.name) {
-      app.blackBishop = {
-        name: app.blackBishop.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackBishop = {
+          name: app.blackBishop.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackBishop]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackBishop]
+      if (restore) {
+        app.blackBishop = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     } if (figureName == app.blackBishop2.name) {
-      app.blackBishop2 = {
-        name: app.blackBishop.name,
-        color: 'black',
-        positionX: -1,
-        positionY: -1
+      if (deleted) {
+        app.blackBishop2 = {
+          name: app.blackBishop.name,
+          color: 'black',
+          positionX: -1,
+          positionY: -1
+        }
+        app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackBishop2]
       }
-      app.deletedBlackFigure = [...app.deletedBlackFigure, app.blackBishop2]
+      if (restore) {
+        app.blackBishop2 = {
+          name: app.lastKilledFigure.killedName,
+          color: app.lastKilledFigure.killedColor,
+          positionX: app.lastKilledFigure.killedPositionX,
+          positionY: app.lastKilledFigure.killedPositionY
+        }
+      }
     }
   }
 
@@ -382,7 +706,6 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whiteQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        console.log('salami', positionX, positionY);
         if (this.checkQueen(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           app.whiteQueen = {
             name: 'white-queen',
@@ -646,11 +969,17 @@ export class FigureRulesService {
       // ----------------------------------------------------------
       else if (this.scannFigure(app.whitePawn1, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+          let saveFigure = app.whitePawn1
           app.whitePawn1 = {
             name: 'white-pawn1',
             color: 'white',
             positionX,
             positionY
+          }
+          if (this.checkScanner(app)) {
+            app.whitePawn1 = saveFigure;
+            this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+            console.log('ქიში გეხსნება მეგობარო');
           }
           return;
         } else {
@@ -671,11 +1000,17 @@ export class FigureRulesService {
         }
       } else if (this.scannFigure(app.whitePawn3, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+          let saveFigure = app.whitePawn3;
           app.whitePawn3 = {
             name: 'white-pawn3',
             color: 'white',
             positionX,
             positionY
+          }
+          if (this.checkScanner(app)) {
+            app.whitePawn3 = saveFigure;
+            this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+            console.log('ქიში გეხსნება მეგობარო');
           }
           return;
         } else {
@@ -683,12 +1018,18 @@ export class FigureRulesService {
         }
       } else if (this.scannFigure(app.whitePawn4, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-            app.whitePawn4 = {
-              name: 'white-pawn4',
-              color: 'white',
-              positionX,
-              positionY
-            }
+          let saveFigure = app.whitePawn4;
+          app.whitePawn4 = {
+            name: 'white-pawn4',
+            color: 'white',
+            positionX,
+            positionY
+          }
+          if (this.checkScanner(app)) {
+            app.whitePawn4 = saveFigure;
+            this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+            console.log('ქიში გეხსნება მეგობარო');
+          }
           return;
         } else {
           console.log('invalid position')
@@ -754,23 +1095,32 @@ export class FigureRulesService {
     if (nextPositionX - positionX != 1 && !(positionX == 2 && nextPositionX - positionX == 2)) {
       return [];
     }
-    if(nextPositionX==8){
-      app.chooseWhite=true;
+    if (nextPositionX == 8) {
+      app.chooseWhite = true;
     }
     if (nextPositionX == positionX + 2 && nextPositionY == positionY) { canKill = false };
     if (nextPositionX == positionX + 1 && nextPositionY == positionY) { canKill = false };
     if (canKill) {
       if (this.checkFigure(nextPositionX, nextPositionY, app)) {
         if (Object.values(app).find(x => x.color == 'black' && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
-
-          if(!this.checkScanner(app)){
-            this.deleteFigure(deleteFigure.name, app);
+          if (!this.checkScanner(app)) {
+            let deleteFigure: Figure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
+            let figureName: string = deleteFigure.name;
+            if (parseInt(deleteFigure.name?.split('')[deleteFigure.name.split('').length - 1])) {
+              figureName = deleteFigure.name?.split('').splice(0, deleteFigure.name.split('').length - 1).join('');
+            }
+            app.lastKilledFigure = {
+              killedName: figureName,
+              killedColor: deleteFigure.color,
+              killedPositionX: deleteFigure.positionX,
+              killedPositionY: deleteFigure.positionY
+            }
+            this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
             returnArr = [...returnArr, {
               positionX: nextPositionX,
               positionY: nextPositionY
             }]
-          }else if(this.checkScanner(app)){
+          } else if (this.checkScanner(app)) {
             console.log('ქიში გეხსნება');
           }
         }
@@ -791,7 +1141,6 @@ export class FigureRulesService {
     if ((app.blackKing.positionX == nextPositionX + 1 && app.blackKing.positionY == nextPositionY + 1) || (app.blackKing.positionX == nextPositionX + 1 && app.blackKing.positionY == nextPositionY - 1)) {
       console.log('ქიში');
     }
-    console.log(nextPositionX, nextPositionY);
 
     return returnArr;
   }
@@ -808,12 +1157,26 @@ export class FigureRulesService {
     if (canKill) {
       if (this.checkFigure(nextPositionX, nextPositionY, app)) {
         if (Object.values(app).find(x => x.color == 'white' && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
-          this.deleteFigure(deleteFigure.name, app);
-          returnArr = [...returnArr, {
-            positionX: nextPositionX,
-            positionY: nextPositionY
-          }]
+          if (!this.checkScanner(app)) {
+            let deleteFigure: Figure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
+            let figureName: string = deleteFigure.name;
+            if (parseInt(deleteFigure.name?.split('')[deleteFigure.name.split('').length - 1])) {
+              figureName = deleteFigure.name?.split('').splice(0, deleteFigure.name.split('').length - 1).join('');
+            }
+            app.lastKilledFigure = {
+              killedName: figureName,
+              killedColor: deleteFigure.color,
+              killedPositionX: deleteFigure.positionX,
+              killedPositionY: deleteFigure.positionY
+            }
+            this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
+            returnArr = [...returnArr, {
+              positionX: nextPositionX,
+              positionY: nextPositionY
+            }]
+          } else if (this.checkScanner(app)) {
+            console.log('ქიში გეხსნება');
+          }
         }
       }
     }
@@ -937,11 +1300,10 @@ export class FigureRulesService {
       if (Object.values(app).find(x => x.color == opponnetColor && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
         let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
         if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          this.deleteFigure(deleteFigure.name, app);
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
         }
       }
     }
-    console.log(nextPositionX, nextPositionY);
     return returnArr;
   }
 
@@ -1127,7 +1489,7 @@ export class FigureRulesService {
       if (Object.values(app).find(x => x.color == this.getOpponentColor(positionX, positionY, app) && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
         let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
         if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          this.deleteFigure(deleteFigure.name, app);
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
         }
       }
     }
@@ -1183,7 +1545,7 @@ export class FigureRulesService {
     if (nextArr.find(x => (x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) && this.getFigureColor(positionX, positionY, app) == 'white') {
       console.log('ქიში');
     }
-    
+
     returnArr = [
       ...returnArr,
       {
@@ -1223,7 +1585,7 @@ export class FigureRulesService {
       if (Object.values(app).find(x => x.color == this.getOpponentColor(positionX, positionY, app) && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
         let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
         if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          this.deleteFigure(deleteFigure.name, app);
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
         }
       }
     }
@@ -1234,96 +1596,96 @@ export class FigureRulesService {
   checkRock(positionX: number, positionY: number, nextPositionX: number, nextPositionY: number, app: AppComponent) {
     this.changeFigure(positionX, positionY, nextPositionX, nextPositionY, app);
     let returnArr: Position[] = [];
-    let nextArr:Position[]=[];
+    let nextArr: Position[] = [];
     let xArr: number[] = [];
     let yArr: number[] = [];
     let x = positionX;
     let y = positionY;
-    let nextX=nextPositionX;
-    let nextY=nextPositionY;
+    let nextX = nextPositionX;
+    let nextY = nextPositionY;
 
     if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
       return [];
     }
 
-      //================ make nextArr
-      while (nextPositionX != 1) {
-        nextPositionX -= 1;
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          xArr = [...xArr, nextPositionX];
-          break;
-        }
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          break;
-        }
+    //================ make nextArr
+    while (nextPositionX != 1) {
+      nextPositionX -= 1;
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
         xArr = [...xArr, nextPositionX];
+        break;
       }
-      nextPositionX = nextX;
-   
-      while (nextPositionX != 8) {
-        nextPositionX += 1;
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          xArr = [...xArr, nextPositionX];       
-          break;
-        }
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          xArr = [...xArr, nextPositionX];
-          break;
-        }
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
+        break;
+      }
+      xArr = [...xArr, nextPositionX];
+    }
+    nextPositionX = nextX;
+
+    while (nextPositionX != 8) {
+      nextPositionX += 1;
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
         xArr = [...xArr, nextPositionX];
+        break;
       }
-      nextPositionX = nextX;
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
+        xArr = [...xArr, nextPositionX];
+        break;
+      }
+      xArr = [...xArr, nextPositionX];
+    }
+    nextPositionX = nextX;
 
     //=============== chnage positionY
-      while (nextPositionY != 1) {
-        nextPositionY -= 1;
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          yArr = [...yArr, nextPositionY];
-          break;
-        }
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          break;
-        }
+    while (nextPositionY != 1) {
+      nextPositionY -= 1;
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
         yArr = [...yArr, nextPositionY];
+        break;
       }
-      nextPositionY = nextY;
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
+        break;
+      }
+      yArr = [...yArr, nextPositionY];
+    }
+    nextPositionY = nextY;
 
-      while (nextPositionY != 8) {
-        nextPositionY += 1;
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          yArr = [...yArr, nextPositionY];
-          break;
-        }
-        if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
-          break;
-        }
+    while (nextPositionY != 8) {
+      nextPositionY += 1;
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
         yArr = [...yArr, nextPositionY];
+        break;
       }
-      nextPositionY = nextY;
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) == this.getFigureColor(nextPositionX, nextPositionY, app))) {
+        break;
+      }
+      yArr = [...yArr, nextPositionY];
+    }
+    nextPositionY = nextY;
 
-      for (let i = 0; i < xArr.length; i++) {
-        nextArr = [...nextArr, {
-          positionX: xArr[i],
-          positionY: nextY
-        }]
-      }
-      for (let i = 0; i < yArr.length; i++) {
-        nextArr = [...nextArr, {
-          positionX: nextX,
-          positionY: yArr[i]
-        }]
-      }
-      // ==============================
-      if (nextArr.find(x => (x.positionX == app.whiteKing.positionX && x.positionY == app.whiteKing.positionY)) && this.getFigureColor(positionX, positionY, app) == 'black') {
-        console.log('ქიში');
-      }
-  
-      if (nextArr.find(x => (x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) && this.getFigureColor(positionX, positionY, app) == 'white') {
-        console.log('ქიში');
-      }
+    for (let i = 0; i < xArr.length; i++) {
+      nextArr = [...nextArr, {
+        positionX: xArr[i],
+        positionY: nextY
+      }]
+    }
+    for (let i = 0; i < yArr.length; i++) {
+      nextArr = [...nextArr, {
+        positionX: nextX,
+        positionY: yArr[i]
+      }]
+    }
+    // ==============================
+    if (nextArr.find(x => (x.positionX == app.whiteKing.positionX && x.positionY == app.whiteKing.positionY)) && this.getFigureColor(positionX, positionY, app) == 'black') {
+      console.log('ქიში');
+    }
 
-      xArr=[];
-      yArr=[];
+    if (nextArr.find(x => (x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) && this.getFigureColor(positionX, positionY, app) == 'white') {
+      console.log('ქიში');
+    }
+
+    xArr = [];
+    yArr = [];
 
     //=============== chnage positionX
     if (nextPositionX < positionX) {
@@ -1402,69 +1764,125 @@ export class FigureRulesService {
       if (Object.values(app).find(x => x.color == this.getOpponentColor(positionX, positionY, app) && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
         let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
         if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          this.deleteFigure(deleteFigure.name, app);
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
         }
       }
     }
     return returnArr;
   }
 
-  checkScanner(app:AppComponent){
-    let kingPositionX:number;
-    let kingPositionY:number;
+  checkScanner(app: AppComponent) {
+    let kingPositionX: number;
+    let kingPositionY: number;
+    let isCheck: boolean = false;
 
-    kingPositionX=app.whiteKing.positionX;
-    kingPositionY=app.whiteKing.positionY;
+    kingPositionX = app.whiteKing.positionX;
+    kingPositionY = app.whiteKing.positionY;
 
-    console.log(kingPositionX,kingPositionY);
-    console.log('feria',this.getFigureColor(kingPositionX+1,kingPositionY,app))
 
-    for(let i=1;i<=8;i++){
-      // if(this.getFigureColor(kingPositionX-i,kingPositionY,app)=='white'){return false}
-      // if(this.getFigureColor(kingPositionX+i,kingPositionY,app)=='white'){return false}
-      // if(this.getFigureColor(kingPositionX,kingPositionY-i,app)=='white'){return false}
-      // if(this.getFigureColor(kingPositionX,kingPositionY+i,app)=='white'){return false}
-      if(this.checkFigure(kingPositionX-i,kingPositionY,app)){
-        if(((kingPositionX-i)==app.blackQueen.positionX && kingPositionY ==app.blackQueen.positionY)
-        ||
-        ((kingPositionX-i)==app.blackRock.positionX && kingPositionY ==app.blackRock.positionY)
-        ||
-        ((kingPositionX-i)==app.blackRock2.positionX && kingPositionY ==app.blackRock2.positionY)
-        ){
+    //  ===================================check white king
+    // queen and rock
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX - i, kingPositionY, app)) {
+        if (this.getFigureColor(kingPositionX - i, kingPositionY, app) == 'white') { break };
+        if (((kingPositionX - i) == app.blackQueen.positionX && kingPositionY == app.blackQueen.positionY)
+          ||
+          ((kingPositionX - i) == app.blackRock.positionX && kingPositionY == app.blackRock.positionY)
+          ||
+          ((kingPositionX - i) == app.blackRock2.positionX && kingPositionY == app.blackRock2.positionY)
+        ) {
           return true;
         }
       }
-      console.log(this.getFigureColor(kingPositionX+i,kingPositionY,app));
-      if(this.checkFigure(kingPositionX+i,kingPositionY,app)){
-        if(((kingPositionX+i)==app.blackQueen.positionX && kingPositionY ==app.blackQueen.positionY)
-        ||
-        ((kingPositionX+i)==app.blackRock.positionX && kingPositionY ==app.blackRock.positionY)
-        ||
-        ((kingPositionX+i)==app.blackRock2.positionX && kingPositionY ==app.blackRock2.positionY)
-        ){
-          
+    }
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX + i, kingPositionY, app)) {
+        if (this.getFigureColor(kingPositionX + i, kingPositionY, app) == 'white') { break };
+        if (((kingPositionX + i) == app.blackQueen.positionX && kingPositionY == app.blackQueen.positionY)
+          ||
+          ((kingPositionX + i) == app.blackRock.positionX && kingPositionY == app.blackRock.positionY)
+          ||
+          ((kingPositionX + i) == app.blackRock2.positionX && kingPositionY == app.blackRock2.positionY)
+        ) {
           return true;
         }
       }
-      if(this.checkFigure(kingPositionX,kingPositionY-i,app)){
-        if((kingPositionX==app.blackQueen.positionX && (kingPositionY-i) ==app.blackQueen.positionY)
-        ||
-        (kingPositionX==app.blackRock.positionX && (kingPositionY-i) ==app.blackRock.positionY)
-        ||
-        (kingPositionX==app.blackRock2.positionX && (kingPositionY-i) ==app.blackRock2.positionY)
-        ){
-         
+    }
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX, kingPositionY - i, app)) {
+        if (this.getFigureColor(kingPositionX, kingPositionY - i, app) == 'white') { break };
+        if ((kingPositionX == app.blackQueen.positionX && (kingPositionY - i) == app.blackQueen.positionY)
+          ||
+          (kingPositionX == app.blackRock.positionX && (kingPositionY - i) == app.blackRock.positionY)
+          ||
+          (kingPositionX == app.blackRock2.positionX && (kingPositionY - i) == app.blackRock2.positionY)
+        ) {
           return true;
         }
       }
-      if(this.checkFigure(kingPositionX,kingPositionY+i,app)){
-        if((kingPositionX==app.blackQueen.positionX && (kingPositionY+i) ==app.blackQueen.positionY)
-        ||
-        (kingPositionX==app.blackRock.positionX && (kingPositionY+i) ==app.blackRock.positionY)
-        ||
-        (kingPositionX==app.blackRock2.positionX && (kingPositionY+i) ==app.blackRock2.positionY)
-        ){
-         
+    }
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX, kingPositionY + i, app)) {
+        if (this.getFigureColor(kingPositionX, kingPositionY + i, app) == 'white') { break };
+        if ((kingPositionX == app.blackQueen.positionX && (kingPositionY + i) == app.blackQueen.positionY)
+          ||
+          (kingPositionX == app.blackRock.positionX && (kingPositionY + i) == app.blackRock.positionY)
+          ||
+          (kingPositionX == app.blackRock2.positionX && (kingPositionY + i) == app.blackRock2.positionY)
+        ) {
+          return true;
+        }
+      }
+    }
+    // queen and bishop
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX + i, kingPositionY + i, app)) {
+        if (this.getFigureColor(kingPositionX + i, kingPositionY + i, app) == 'white') { break };
+        if ((kingPositionX + i == app.blackQueen.positionX && (kingPositionY + i) == app.blackQueen.positionY)
+          ||
+          (kingPositionX + i == app.blackBishop.positionX && (kingPositionY + i) == app.blackBishop.positionY)
+          ||
+          (kingPositionX + i == app.blackBishop2.positionX && (kingPositionY + i) == app.blackBishop2.positionY)
+        ) {
+          return true;
+        }
+      }
+    }
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX - i, kingPositionY - i, app)) {
+        if (this.getFigureColor(kingPositionX - i, kingPositionY - i, app) == 'white') { break };
+        if ((kingPositionX - i == app.blackQueen.positionX && (kingPositionY - i) == app.blackQueen.positionY)
+          ||
+          (kingPositionX - i == app.blackBishop.positionX && (kingPositionY - i) == app.blackBishop.positionY)
+          ||
+          (kingPositionX - i == app.blackBishop2.positionX && (kingPositionY - i) == app.blackBishop2.positionY)
+        ) {
+          return true;
+        }
+      }
+    }
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX - i, kingPositionY + i, app)) {
+        if (this.getFigureColor(kingPositionX - i, kingPositionY + i, app) == 'white') { break };
+        if ((kingPositionX - i == app.blackQueen.positionX && (kingPositionY + i) == app.blackQueen.positionY)
+          ||
+          (kingPositionX - i == app.blackBishop.positionX && (kingPositionY + i) == app.blackBishop.positionY)
+          ||
+          (kingPositionX - i == app.blackBishop2.positionX && (kingPositionY + i) == app.blackBishop2.positionY)
+        ) {
+          return true;
+        }
+      }
+    }
+    for (let i = 1; i <= 8; i++) {
+      if (this.checkFigure(kingPositionX + i, kingPositionY - i, app)) {
+        if (this.getFigureColor(kingPositionX + i, kingPositionY - i, app) == 'white') { break };
+        if ((kingPositionX + i == app.blackQueen.positionX && (kingPositionY - i) == app.blackQueen.positionY)
+          ||
+          (kingPositionX + i == app.blackBishop.positionX && (kingPositionY - i) == app.blackBishop.positionY)
+          ||
+          (kingPositionX + i == app.blackBishop2.positionX && (kingPositionY - i) == app.blackBishop2.positionY)
+        ) {
           return true;
         }
       }
