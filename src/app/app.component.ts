@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Figure, Position, KilledFigure } from './app.model';
-import {FigureRulesService} from './figure-rules.service'
+import { ChooseFigure, EndPawn, Position, KilledFigure } from './app.model';
+import { FigureRulesService } from './figure-rules.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -8,7 +8,7 @@ import {FigureRulesService} from './figure-rules.service'
 })
 export class AppComponent implements OnInit {
   title = 'chess';
-  constructor(public figureRulesService:FigureRulesService){}
+  constructor(public figureRulesService: FigureRulesService) { }
   columnrray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   rowArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   nextPosition: Position = {
@@ -16,59 +16,67 @@ export class AppComponent implements OnInit {
     positionY: -1
   };
 
-  chooseWhiteFigure:string[]=['queen','rock','bishop','knight'];
-  chooseBlackFigure:string[]=['black-queen','black-rock','black-bishop','black-knight'];
+  checkKing: string = '';
 
-  chooseWhite:boolean=false;
-  chooseBlack:boolean=false;
 
-  lastKilledFigure:KilledFigure={
-    killedName:'',
-    killedColor:'',
-    killedPositionX:0,
-    killedPositionY:0
+
+  isKillTarget: boolean = false;
+
+  chooseWhiteFigure: string[] = ['queen', 'rock', 'bishop', 'knight'];
+  chooseBlackFigure: string[] = ['black-queen', 'black-rock', 'black-bishop', 'black-knight'];
+
+  chooseWhite: boolean = false;
+  chooseBlack: boolean = false;
+
+  endPawn: EndPawn;
+
+  lastKilledFigure: KilledFigure = {
+    killedName: '',
+    killedColor: '',
+    killedPositionX: 0,
+    killedPositionY: 0
   }
 
   isSubmited: boolean;
 
-  check:boolean=false;
+  isGameOver: boolean;
 
-  checkMaker:Figure;
+  check: boolean = false;
 
-  deletedBlackFigure:Figure[]=[];
+  deletedBlackFigure: string[] = [];
 
-  deletedWhiteFigure:Figure[]=[];
+  deletedWhiteFigure: string[] = [];
 
   whiteKing = {
     name: 'white-king',
-    color:'white',
+    color: 'white',
     positionY: 4,
     positionX: 1
   };
 
   whiteRock = {
     name: 'white-rock',
-    color:'white',
+    color: 'white',
     positionY: 1,
     positionX: 1
   };
 
   whiteBishop = {
     name: 'white-bishop',
-    color:'white',
+    color: 'white',
     positionY: 3,
     positionX: 1
   };
   whiteQueen = {
     name: 'white-queen',
-    color:'white',
+    color: 'white',
     positionY: 5,
     positionX: 1
   }
 
   whiteKnight = {
     name: 'white-knight',
-    color:'white',
+    color: 'white',
     positionY: 2,
     positionX: 1
   }
@@ -76,161 +84,161 @@ export class AppComponent implements OnInit {
 
   whitePawn1 = {
     name: 'white-pawn1',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 1
   }
 
   whitePawn2 = {
     name: 'white-pawn2',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 2
   }
 
   whitePawn3 = {
     name: 'white-pawn3',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 3
   }
 
   whitePawn4 = {
     name: 'white-pawn4',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 4
   }
 
   whitePawn5 = {
     name: 'white-pawn5',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 5
   }
 
   whitePawn6 = {
     name: 'white-pawn6',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 6
   }
 
   whitePawn7 = {
     name: 'white-pawn7',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 7
   }
 
   whitePawn8 = {
     name: 'white-pawn8',
-    color:'white',
+    color: 'white',
     positionX: 2,
     positionY: 8
   }
 
   blackPawn1 = {
     name: 'black-pawn1',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 1
   }
 
   blackPawn2 = {
     name: 'black-pawn2',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 2
   }
 
   blackPawn3 = {
     name: 'black-pawn3',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 3
   }
 
   blackPawn4 = {
     name: 'black-pawn4',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 4
   }
 
   blackPawn5 = {
     name: 'black-pawn5',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 5
   }
 
   blackPawn6 = {
     name: 'black-pawn6',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 6
   }
 
   blackPawn7 = {
     name: 'black-pawn7',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 7
   }
 
   blackPawn8 = {
     name: 'black-pawn8',
-    color:'black',
+    color: 'black',
     positionX: 7,
     positionY: 8
   }
 
   blackKing = {
     name: 'black-king',
-    color:'black',
+    color: 'black',
     positionY: 4,
     positionX: 8
   };
 
   blackRock = {
     name: 'black-rock',
-    color:'black',
+    color: 'black',
     positionY: 1,
     positionX: 8
   };
 
   blackBishop = {
     name: 'black-bishop',
-    color:'black',
+    color: 'black',
     positionY: 3,
     positionX: 8
   };
 
   blackQueen = {
     name: 'black-queen',
-    color:'black',
+    color: 'black',
     positionY: 5,
     positionX: 8
   };
 
   blackKnight = {
     name: 'black-knight',
-    color:'black',
+    color: 'black',
     positionY: 2,
     positionX: 8
   };
 
   whiteRock2 = {
     name: 'white-rock2',
-    color:'white',
+    color: 'white',
     positionY: 8,
     positionX: 1
   };
 
   whiteBishop2 = {
     name: 'white-bishop2',
-    color:'white',
+    color: 'white',
     positionY: 6,
     positionX: 1
   };
@@ -238,39 +246,158 @@ export class AppComponent implements OnInit {
 
   whiteKnight2 = {
     name: 'white-knight2',
-    color:'white',
+    color: 'white',
     positionY: 7,
     positionX: 1
   };
 
   blackRock2 = {
     name: 'black-rock2',
-    color:'black',
+    color: 'black',
     positionY: 8,
     positionX: 8
   };
 
   blackBishop2 = {
     name: 'black-bishop2',
-    color:'black',
+    color: 'black',
     positionY: 6,
     positionX: 8
   };
 
   blackKnight2 = {
     name: 'black-knight2',
-    color:'black',
+    color: 'black',
     positionY: 7,
     positionX: 8
   };
-  
+
+  chooseQueen= {
+    name: 'white_queen',
+    color: 'white',
+    positionX: -1,
+    positionY: -1
+  }
+
+  chooseBlackQueen= {
+    name: 'black_queen',
+    color: 'black',
+    positionX: -1,
+    positionY: -1
+  }
+
+  chooseRock= {
+    name: 'white_rock',
+    color: 'white',
+    positionX: -1,
+    positionY: -1
+  }
+
+  chooseBlackRock= {
+    name: 'black_rock',
+    color: 'black',
+    positionX: -1,
+    positionY: -1
+  }
+
+  chooseBishop= {
+    name: 'white_bishop',
+    color: 'white',
+    positionX: -1,
+    positionY: -1
+  }
+
+  chooseBlackBishop= {
+    name: 'black_bishop',
+    color: 'black',
+    positionX: -1,
+    positionY: -1
+  }
+
+  chooseKnight= {
+    name: 'white_knight',
+    color: 'white',
+    positionX: -1,
+    positionY: -1
+  }
+
+  chooseBlackKnight= {
+    name: 'black_knight',
+    color: 'black',
+    positionX: -1,
+    positionY: -1
+  }
+
   submit() {
     this.isSubmited = !this.isSubmited;
   }
 
-  chooseFigure(){
-    this.chooseWhite=false;
-    this.chooseBlack=false;
+  chooseFigure(figure: string) {
+    let positionX:number=this.endPawn.pawnPositionX;
+    let positionY:number=this.endPawn.pawnPositionY;
+    this.figureRulesService.deleteOrRestoreFigure(true, false, this.endPawn.pawnName, this);
+    // ------------------------- white figure
+    if (figure == 'queen') {
+      this.chooseQueen = {
+        ...this.chooseQueen,
+        positionX,
+        positionY
+      }
+    }
+    if (figure == 'rock') {
+      this.chooseRock = {
+        ...this.chooseRock,
+        positionX,
+        positionY
+      }
+    }
+    if (figure == 'bishop') {
+      this.chooseBishop = {
+        ...this.chooseBishop,
+        positionX,
+        positionY
+      }
+    }
+    if (figure == 'knight') {
+      this.chooseKnight = {
+        ...this.chooseKnight,
+        positionX,
+        positionY
+      }
+    }
+
+    // -------------------- black figure
+    if (figure == 'black-queen') {
+      this.chooseBlackQueen = {
+        ...this.chooseBlackQueen,
+        positionX,
+        positionY
+      }
+      console.log(this.chooseQueen)
+    }
+    if (figure == 'black-rock') {
+      this.chooseBlackRock = {
+        ...this.chooseBlackRock,
+        positionX,
+        positionY
+      }
+    }
+    if (figure == 'black-bishop') {
+      this.chooseBlackBishop = {
+        ...this.chooseBlackBishop,
+        positionX,
+        positionY
+      }
+    }
+    if (figure == 'black-knight') {
+      this.chooseBlackKnight = {
+        ...this.chooseBlackKnight,
+        positionX,
+        positionY
+      }
+    }
+    this.chooseWhite = false;
+    this.chooseBlack = false;
   }
 
   ngOnInit(): void {

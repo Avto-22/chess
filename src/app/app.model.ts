@@ -16,3 +16,16 @@ export interface Position {
     positionX: number;
     positionY: number;
   }
+
+  export interface ChooseFigure{
+    chooseName:string;
+    chooseColor:string;
+    choosePositionX:number;
+    choosePositionY:number;
+  }
+
+  export interface EndPawn{
+    pawnName:string;
+    pawnPositionX:number;
+    pawnPositionY:number;
+  }
