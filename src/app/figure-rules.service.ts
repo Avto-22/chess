@@ -7,6 +7,8 @@ import { ChooseFigure, Figure, Position } from './app.model';
 })
 export class FigureRulesService {
 
+  checkMaker: Position;
+
   constructor() { }
 
   checkFigure(positionX: number, positionY: number, app: AppComponent): boolean {
@@ -17,7 +19,7 @@ export class FigureRulesService {
   }
 
   scannFigure(figure: Figure, positionX: number, positionY: number): boolean {
-      return figure.positionX == positionX && figure.positionY == positionY;
+    return figure.positionX == positionX && figure.positionY == positionY;
   }
 
   getOpponentColor(positionX: number, positionY: number, app: AppComponent): string {
@@ -290,7 +292,7 @@ export class FigureRulesService {
           positionX: -1,
           positionY: -1
         }
-        app.deletedWhiteFigure = [...app.deletedWhiteFigure,'knight']
+        app.deletedWhiteFigure = [...app.deletedWhiteFigure, 'knight']
       }
       if (restore) {
         app.whiteKnight = {
@@ -844,7 +846,7 @@ export class FigureRulesService {
     } if (!this.checkFigure(positionX, positionY, app) || this.checkFigure(positionX, positionY, app)) {
       if (this.scannFigure(app.whiteKing, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKing(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure=app.whiteKing;
+          let saveFigure = app.whiteKing;
           app.whiteKing = {
             name: 'white-king',
             color: 'white',
@@ -932,6 +934,7 @@ export class FigureRulesService {
         }
       } else if (this.scannFigure(app.whiteQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkQueen(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+          let saveFigure2 = app.whiteQueen;
           let saveFigure = app.whiteQueen;
           app.whiteQueen = {
             name: 'white-queen',
@@ -946,6 +949,12 @@ export class FigureRulesService {
             }
             console.log('ქიში გეხსნება მეგობარო');
           }
+          if (this.checkScanner(app) && app.checkKing == 'black') {
+            if (this.checkMaker.positionX == saveFigure2.positionX && this.checkMaker.positionY == saveFigure2.positionY) {
+              console.log(this.gameOver({ positionX: app.whiteQueen.positionX, positionY: app.whiteQueen.positionY }, app));
+            }
+          }
+
           app.isKillTarget = false;
           return;
         }
@@ -1024,7 +1033,7 @@ export class FigureRulesService {
       // ----------------------------------------------------------------------------------------------
       else if (this.scannFigure(app.blackKing, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKing(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure=app.blackKing;
+          let saveFigure = app.blackKing;
           app.blackKing = {
             name: 'black-king',
             color: 'black',
@@ -1202,7 +1211,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn1, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn1.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn1.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn1;
           app.blackPawn1 = {
             name: 'black-pawn1',
@@ -1224,7 +1233,7 @@ export class FigureRulesService {
         }
       }
       else if (this.scannFigure(app.blackPawn2, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn2.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn2.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn2;
           app.blackPawn2 = {
             name: 'black-pawn2',
@@ -1245,7 +1254,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn3, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn3.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn3.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn3;
           app.blackPawn3 = {
             name: 'black-pawn3',
@@ -1266,7 +1275,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn4, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn4.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn4.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn4;
           app.blackPawn4 = {
             name: 'black-pawn4',
@@ -1287,7 +1296,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn5, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn5.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn5.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn5;
           app.blackPawn5 = {
             name: 'black-pawn5',
@@ -1308,7 +1317,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn6, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn6.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn6.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn6;
           app.blackPawn6 = {
             name: 'black-pawn6',
@@ -1329,7 +1338,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn7, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn7.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn7.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn7;
           app.blackPawn7 = {
             name: 'black-pawn7',
@@ -1350,7 +1359,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn8, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkBlackkPawn(app.blackPawn8.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkBlackkPawn(app.blackPawn8.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.blackPawn8;
           app.blackPawn8 = {
             name: 'black-pawn8',
@@ -1373,7 +1382,7 @@ export class FigureRulesService {
       }
       // ----------------------------------------------------------
       else if (this.scannFigure(app.whitePawn1, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn1.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn1.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn1
           app.whitePawn1 = {
             name: 'white-pawn1',
@@ -1395,7 +1404,7 @@ export class FigureRulesService {
         }
       }
       else if (this.scannFigure(app.whitePawn2, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn2.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn2.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn2;
           app.whitePawn2 = {
             name: 'white-pawn2',
@@ -1416,7 +1425,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn3, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn3.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn3.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn3;
           app.whitePawn3 = {
             name: 'white-pawn3',
@@ -1437,7 +1446,7 @@ export class FigureRulesService {
           console.log('invalid position');
         }
       } else if (this.scannFigure(app.whitePawn4, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn4.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn4.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn4;
           app.whitePawn4 = {
             name: 'white-pawn4',
@@ -1458,7 +1467,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn5, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn5.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn5.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn5;
           app.whitePawn5 = {
             name: 'white-pawn5',
@@ -1479,7 +1488,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn6, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn6.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn6.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn6;
           app.whitePawn6 = {
             name: 'white-pawn6',
@@ -1500,7 +1509,7 @@ export class FigureRulesService {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn7, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn7.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn7.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn7;
           app.whitePawn7 = {
             name: 'white-pawn7',
@@ -1522,7 +1531,7 @@ export class FigureRulesService {
         }
 
       } else if (this.scannFigure(app.whitePawn8, app.nextPosition.positionX, app.nextPosition.positionY)) {
-        if (this.checkPawn(app.whitePawn8.name,app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
+        if (this.checkPawn(app.whitePawn8.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.whitePawn8;
           app.whitePawn8 = {
             name: 'white-pawn8',
@@ -1550,8 +1559,8 @@ export class FigureRulesService {
           app.chooseQueen = {
             name: 'queen',
             color: 'white',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'white') {
             app.chooseQueen = saveFigure;
@@ -1565,14 +1574,14 @@ export class FigureRulesService {
         } else {
           console.log('invalid position')
         }
-      }else if (this.scannFigure(app.chooseBlackQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
+      } else if (this.scannFigure(app.chooseBlackQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkQueen(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.chooseBlackQueen;
           app.chooseBlackQueen = {
             name: 'black-queen',
             color: 'black',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'black') {
             app.chooseBlackQueen = saveFigure;
@@ -1586,14 +1595,14 @@ export class FigureRulesService {
         } else {
           console.log('invalid position')
         }
-      }else if (this.scannFigure(app.chooseRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
+      } else if (this.scannFigure(app.chooseRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.chooseRock;
           app.chooseRock = {
             name: 'rock',
             color: 'white',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'white') {
             app.chooseRock = saveFigure;
@@ -1607,14 +1616,14 @@ export class FigureRulesService {
         } else {
           console.log('invalid position')
         }
-      }else if (this.scannFigure(app.chooseBlackRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
+      } else if (this.scannFigure(app.chooseBlackRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.chooseBlackRock;
           app.chooseBlackRock = {
             name: 'black-rock',
             color: 'black',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'black') {
             app.chooseBlackRock = saveFigure;
@@ -1628,14 +1637,14 @@ export class FigureRulesService {
         } else {
           console.log('invalid position')
         }
-      }else if (this.scannFigure(app.chooseBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
+      } else if (this.scannFigure(app.chooseBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.chooseBishop;
           app.chooseBishop = {
             name: 'bishop',
             color: 'white',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'white') {
             app.chooseBishop = saveFigure;
@@ -1649,14 +1658,14 @@ export class FigureRulesService {
         } else {
           console.log('invalid position')
         }
-      }else if (this.scannFigure(app.chooseBlackBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
+      } else if (this.scannFigure(app.chooseBlackBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.chooseBlackBishop;
           app.chooseBlackBishop = {
             name: 'black-bishop',
             color: 'black',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'black') {
             app.chooseBlackBishop = saveFigure;
@@ -1670,14 +1679,14 @@ export class FigureRulesService {
         } else {
           console.log('invalid position')
         }
-      }else if (this.scannFigure(app.chooseKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
+      } else if (this.scannFigure(app.chooseKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.chooseKnight;
           app.chooseKnight = {
             name: 'knight',
             color: 'white',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'white') {
             app.chooseKnight = saveFigure;
@@ -1691,14 +1700,14 @@ export class FigureRulesService {
         } else {
           console.log('invalid position')
         }
-      }else if (this.scannFigure(app.chooseBlackKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
+      } else if (this.scannFigure(app.chooseBlackKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           let saveFigure = app.chooseBlackKnight;
           app.chooseBlackKnight = {
             name: 'black-knight',
             color: 'black',
-            positionX:positionX,
-            positionY:positionY
+            positionX: positionX,
+            positionY: positionY
           };
           if (this.checkScanner(app) && app.checkKing == 'black') {
             app.chooseBlackKnight = saveFigure;
@@ -1717,22 +1726,22 @@ export class FigureRulesService {
   }
 
   // rules functions
-  checkPawn(pawnName:string,positionX: number, positionY: number, nextPositionX: number, nextPositionY: number, app: AppComponent) {
+  checkPawn(pawnName: string, positionX: number, positionY: number, nextPositionX: number, nextPositionY: number, app: AppComponent) {
     this.changeFigure(positionX, positionY, nextPositionX, nextPositionY, app);
     let returnArr: Position[] = [];
     let canKill: boolean = true;
     if (nextPositionX - positionX != 1 && !(positionX == 2 && nextPositionX - positionX == 2)) {
-      
+
       return [];
     }
     if (nextPositionX == 8) {
-      if(this.checkFigure(nextPositionX,nextPositionY,app) && nextPositionY==positionY){
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && nextPositionY == positionY) {
         return [];
       }
-      app.endPawn={
+      app.endPawn = {
         pawnName,
-        pawnPositionX:nextPositionX,
-        pawnPositionY:nextPositionY
+        pawnPositionX: nextPositionX,
+        pawnPositionY: nextPositionY
       }
       app.chooseWhite = true;
     }
@@ -1756,7 +1765,7 @@ export class FigureRulesService {
             //   figureName = deleteFigure.name?.split('').splice(0, deleteFigure.name.split('').length - 1).join('');
             // }
             app.lastKilledFigure = {
-              killedName:  figureName,
+              killedName: figureName,
               killedColor: deleteFigure.color,
               killedPositionX: deleteFigure.positionX,
               killedPositionY: deleteFigure.positionY
@@ -1791,7 +1800,7 @@ export class FigureRulesService {
     return returnArr;
   }
 
-  checkBlackkPawn(pawnName:string,positionX: number, positionY: number, nextPositionX: number, nextPositionY: number, app: AppComponent) {
+  checkBlackkPawn(pawnName: string, positionX: number, positionY: number, nextPositionX: number, nextPositionY: number, app: AppComponent) {
     this.changeFigure(positionX, positionY, nextPositionX, nextPositionY, app);
     let returnArr: Position[] = [];
     let canKill: boolean = true;
@@ -1800,13 +1809,13 @@ export class FigureRulesService {
     }
 
     if (nextPositionX == 1) {
-      if(this.checkFigure(nextPositionX,nextPositionY,app) && nextPositionY==positionY){
+      if (this.checkFigure(nextPositionX, nextPositionY, app) && nextPositionY == positionY) {
         return [];
       }
-      app.endPawn={
+      app.endPawn = {
         pawnName,
-        pawnPositionX:nextPositionX,
-        pawnPositionY:nextPositionY
+        pawnPositionX: nextPositionX,
+        pawnPositionY: nextPositionY
       }
       app.chooseBlack = true;
     }
@@ -1823,20 +1832,20 @@ export class FigureRulesService {
         )
       ) {
         if (Object.values(app).find(x => x.color == 'white' && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-            app.isKillTarget = true;
-            let deleteFigure: Figure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
-            let figureName: string = deleteFigure.name;
-            app.lastKilledFigure = {
-              killedName: figureName,
-              killedColor: deleteFigure.color,
-              killedPositionX: deleteFigure.positionX,
-              killedPositionY: deleteFigure.positionY
-            }
-            this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
-            returnArr = [...returnArr, {
-              positionX: nextPositionX,
-              positionY: nextPositionY
-            }]
+          app.isKillTarget = true;
+          let deleteFigure: Figure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
+          let figureName: string = deleteFigure.name;
+          app.lastKilledFigure = {
+            killedName: figureName,
+            killedColor: deleteFigure.color,
+            killedPositionX: deleteFigure.positionX,
+            killedPositionY: deleteFigure.positionY
+          }
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
+          returnArr = [...returnArr, {
+            positionX: nextPositionX,
+            positionY: nextPositionY
+          }]
         }
       }
     }
@@ -1956,18 +1965,18 @@ export class FigureRulesService {
     ];
     if (this.checkFigure(nextPositionX, nextPositionY, app)) {
       if (Object.values(app).find(x => x.color == opponnetColor && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          let deleteFigure: Figure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
-          let figureName: string = deleteFigure.name;
-          app.lastKilledFigure = {
-            killedName: figureName,
-            killedColor: deleteFigure.color,
-            killedPositionX: deleteFigure.positionX,
-            killedPositionY: deleteFigure.positionY
-          }
-          if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-            app.isKillTarget=true;
-            this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
-          }
+        let deleteFigure: Figure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
+        let figureName: string = deleteFigure.name;
+        app.lastKilledFigure = {
+          killedName: figureName,
+          killedColor: deleteFigure.color,
+          killedPositionX: deleteFigure.positionX,
+          killedPositionY: deleteFigure.positionY
+        }
+        if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
+          app.isKillTarget = true;
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
+        }
       }
     }
     return returnArr;
@@ -2069,6 +2078,10 @@ export class FigureRulesService {
     }
 
     if (nextArr.find(x => (x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) && this.getFigureColor(positionX, positionY, app) == 'white') {
+      this.checkMaker = {
+        positionX,
+        positionY
+      }
       console.log('ქიში');
     }
 
@@ -2153,18 +2166,18 @@ export class FigureRulesService {
 
     if (this.checkFigure(nextPositionX, nextPositionY, app)) {
       if (Object.values(app).find(x => x.color == this.getOpponentColor(positionX, positionY, app) && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
-          let figureName: string = deleteFigure.name;
-          app.lastKilledFigure = {
-            killedName: figureName,
-            killedColor: deleteFigure.color,
-            killedPositionX: deleteFigure.positionX,
-            killedPositionY: deleteFigure.positionY
-          }
-          if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-            app.isKillTarget = true;
-            this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
-          }
+        let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
+        let figureName: string = deleteFigure.name;
+        app.lastKilledFigure = {
+          killedName: figureName,
+          killedColor: deleteFigure.color,
+          killedPositionX: deleteFigure.positionX,
+          killedPositionY: deleteFigure.positionY
+        }
+        if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
+          app.isKillTarget = true;
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
+        }
       }
     }
     return returnArr;
@@ -2257,18 +2270,18 @@ export class FigureRulesService {
     ]
     if (this.checkFigure(nextPositionX, nextPositionY, app)) {
       if (Object.values(app).find(x => x.color == this.getOpponentColor(positionX, positionY, app) && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
-          let figureName: string = deleteFigure.name;
-          app.lastKilledFigure = {
-            killedName: figureName,
-            killedColor: deleteFigure.color,
-            killedPositionX: deleteFigure.positionX,
-            killedPositionY: deleteFigure.positionY
-          };
-          if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-            app.isKillTarget = true;
-            this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
-          }
+        let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
+        let figureName: string = deleteFigure.name;
+        app.lastKilledFigure = {
+          killedName: figureName,
+          killedColor: deleteFigure.color,
+          killedPositionX: deleteFigure.positionX,
+          killedPositionY: deleteFigure.positionY
+        };
+        if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
+          app.isKillTarget = true;
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
+        }
       }
     }
     return returnArr;
@@ -2276,28 +2289,28 @@ export class FigureRulesService {
 
 
   checkRock(positionX: number, positionY: number, nextPositionX: number, nextPositionY: number, app: AppComponent) {
-    
-    if(
-      (positionX!=app.whiteRock.positionX && positionY!=app.whiteRock.positionY)
+
+    if (
+      (positionX != app.whiteRock.positionX && positionY != app.whiteRock.positionY)
       &&
-      (positionX!=app.whiteRock2.positionX && positionY!=app.whiteRock2.positionY)
+      (positionX != app.whiteRock2.positionX && positionY != app.whiteRock2.positionY)
       &&
-      (positionX!=app.blackRock.positionX && positionY!=app.blackRock.positionY)
+      (positionX != app.blackRock.positionX && positionY != app.blackRock.positionY)
       &&
-      (positionX!=app.blackRock2.positionX && positionY!=app.blackRock2.positionY)
+      (positionX != app.blackRock2.positionX && positionY != app.blackRock2.positionY)
       &&
-      (positionX!=app.chooseRock.positionX && positionY!=app.chooseRock.positionY)
+      (positionX != app.chooseRock.positionX && positionY != app.chooseRock.positionY)
       &&
-      (positionX!=app.chooseBlackRock.positionX && positionY!=app.chooseBlackRock.positionY)
+      (positionX != app.chooseBlackRock.positionX && positionY != app.chooseBlackRock.positionY)
       &&
-      (positionX!=app.chooseQueen.positionX && positionY!=app.chooseQueen.positionY)
+      (positionX != app.chooseQueen.positionX && positionY != app.chooseQueen.positionY)
       &&
-      (positionX!=app.chooseBlackQueen.positionX && positionY!=app.chooseBlackQueen.positionY)
+      (positionX != app.chooseBlackQueen.positionX && positionY != app.chooseBlackQueen.positionY)
       &&
-      (positionX!=app.whiteQueen.positionX && positionY!=app.whiteQueen.positionY)
+      (positionX != app.whiteQueen.positionX && positionY != app.whiteQueen.positionY)
       &&
-      (positionX!=app.blackQueen.positionX && positionY!=app.blackQueen.positionY)
-    ){return []};
+      (positionX != app.blackQueen.positionX && positionY != app.blackQueen.positionY)
+    ) { return [] };
     this.changeFigure(positionX, positionY, nextPositionX, nextPositionY, app);
     let returnArr: Position[] = [];
     let nextArr: Position[] = [];
@@ -2314,7 +2327,9 @@ export class FigureRulesService {
 
     //================ make nextArr
     while (nextPositionX != 1) {
+
       nextPositionX -= 1;
+
       if (this.checkFigure(nextPositionX, nextPositionY, app) && (this.getFigureColor(positionX, positionY, app) != this.getFigureColor(nextPositionX, nextPositionY, app))) {
         xArr = [...xArr, nextPositionX];
         break;
@@ -2385,6 +2400,10 @@ export class FigureRulesService {
     }
 
     if (nextArr.find(x => (x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) && this.getFigureColor(positionX, positionY, app) == 'white') {
+      this.checkMaker = {
+        positionX,
+        positionY
+      }
       console.log('ქიში');
     }
 
@@ -2466,18 +2485,18 @@ export class FigureRulesService {
     }
     if (this.checkFigure(nextPositionX, nextPositionY, app)) {
       if (Object.values(app).find(x => x.color == this.getOpponentColor(positionX, positionY, app) && x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-          let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
-          let figureName: string = deleteFigure.name;
-          app.lastKilledFigure = {
-            killedName: figureName,
-            killedColor: deleteFigure.color,
-            killedPositionX: deleteFigure.positionX,
-            killedPositionY: deleteFigure.positionY
-          };
-          if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
-            app.isKillTarget = true;
-            this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
-          }
+        let deleteFigure = Object.values(app).find(x => x.positionX == nextPositionX && x.positionY == nextPositionY);
+        let figureName: string = deleteFigure.name;
+        app.lastKilledFigure = {
+          killedName: figureName,
+          killedColor: deleteFigure.color,
+          killedPositionX: deleteFigure.positionX,
+          killedPositionY: deleteFigure.positionY
+        };
+        if (returnArr.find(x => x.positionX == nextPositionX && x.positionY == nextPositionY)) {
+          app.isKillTarget = true;
+          this.deleteOrRestoreFigure(true, false, deleteFigure.name, app);
+        }
       }
     }
     return returnArr;
@@ -2508,7 +2527,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2526,7 +2545,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2544,7 +2563,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2562,7 +2581,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
-        }
+        } else { break };
       }
     }
     // queen and bishop
@@ -2581,7 +2600,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2599,7 +2618,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2617,7 +2636,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2635,9 +2654,48 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'white';
           return true;
+        } else { break };
+      }
+    }
+    // pawn
+
+    if (this.checkFigure(kingPositionX + 1, kingPositionY + 1, app)) {
+      if (this.getFigureColor(kingPositionX + 1, kingPositionY + 1, app) == 'black') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX + 1 && x.positionY == kingPositionY + 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'white';
+          return true;
         }
       }
-    } //--------end check white king
+    }
+
+    if (this.checkFigure(kingPositionX + 1, kingPositionY - 1, app)) {
+      if (this.getFigureColor(kingPositionX + 1, kingPositionY - 1, app) == 'black') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX + 1 && x.positionY == kingPositionY - 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'white';
+          return true;
+        }
+      }
+    }
+
+    if (this.checkFigure(kingPositionX - 1, kingPositionY + 1, app)) {
+      if (this.getFigureColor(kingPositionX - 1, kingPositionY + 1, app) == 'black') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX - 1 && x.positionY == kingPositionY + 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'white';
+          return true;
+        }
+      }
+    }
+
+    if (this.checkFigure(kingPositionX - 1, kingPositionY - 1, app)) {
+      if (this.getFigureColor(kingPositionX - 1, kingPositionY - 1, app) == 'black') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX - 1 && x.positionY == kingPositionY - 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'white';
+          return true;
+        }
+      }
+    }
+
+    //--------end check white king
 
     kingPositionX = app.blackKing.positionX;
     kingPositionY = app.blackKing.positionY;
@@ -2659,7 +2717,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'black';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2677,7 +2735,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'black';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2695,7 +2753,7 @@ export class FigureRulesService {
         ) {
           app.checkKing = 'black';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2707,13 +2765,13 @@ export class FigureRulesService {
           ||
           (kingPositionX == app.whiteRock2.positionX && (kingPositionY + i) == app.whiteRock2.positionY)
           ||
-          (kingPositionX == app.chooseQueen.positionX && (kingPositionY+i) == app.chooseQueen.positionY)
+          (kingPositionX == app.chooseQueen.positionX && (kingPositionY + i) == app.chooseQueen.positionY)
           ||
-          (kingPositionX == app.chooseRock.positionX && (kingPositionY+i) == app.chooseRock.positionY)
+          (kingPositionX == app.chooseRock.positionX && (kingPositionY + i) == app.chooseRock.positionY)
         ) {
           app.checkKing = 'black';
           return true;
-        }
+        } else { break };
       }
     }
     // queen and bishop
@@ -2726,13 +2784,13 @@ export class FigureRulesService {
           ||
           (kingPositionX + i == app.whiteBishop2.positionX && (kingPositionY + i) == app.whiteBishop2.positionY)
           ||
-          (kingPositionX + i == app.chooseQueen.positionX && (kingPositionY+i) == app.chooseQueen.positionY)
+          (kingPositionX + i == app.chooseQueen.positionX && (kingPositionY + i) == app.chooseQueen.positionY)
           ||
           (kingPositionX + i == app.chooseBishop.positionX && (kingPositionY + i) == app.chooseBishop.positionY)
         ) {
           app.checkKing = 'black';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2744,13 +2802,13 @@ export class FigureRulesService {
           ||
           (kingPositionX - i == app.whiteBishop2.positionX && (kingPositionY - i) == app.whiteBishop2.positionY)
           ||
-          (kingPositionX - i == app.chooseQueen.positionX && (kingPositionY-i) == app.chooseQueen.positionY)
+          (kingPositionX - i == app.chooseQueen.positionX && (kingPositionY - i) == app.chooseQueen.positionY)
           ||
           (kingPositionX - i == app.chooseBishop.positionX && (kingPositionY - i) == app.chooseBishop.positionY)
         ) {
           app.checkKing = 'black';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2762,13 +2820,13 @@ export class FigureRulesService {
           ||
           (kingPositionX - i == app.whiteBishop2.positionX && (kingPositionY + i) == app.whiteBishop2.positionY)
           ||
-          (kingPositionX - i == app.chooseQueen.positionX && (kingPositionY+i) == app.chooseQueen.positionY)
+          (kingPositionX - i == app.chooseQueen.positionX && (kingPositionY + i) == app.chooseQueen.positionY)
           ||
           (kingPositionX - i == app.chooseBishop.positionX && (kingPositionY + i) == app.chooseBishop.positionY)
         ) {
           app.checkKing = 'black';
           return true;
-        }
+        } else { break };
       }
     }
     for (let i = 1; i <= 8; i++) {
@@ -2780,26 +2838,438 @@ export class FigureRulesService {
           ||
           (kingPositionX + i == app.whiteBishop2.positionX && (kingPositionY - i) == app.whiteBishop2.positionY)
           ||
-          (kingPositionX + i == app.chooseQueen.positionX && (kingPositionY-i) == app.chooseQueen.positionY)
+          (kingPositionX + i == app.chooseQueen.positionX && (kingPositionY - i) == app.chooseQueen.positionY)
           ||
           (kingPositionX + i == app.chooseBishop.positionX && (kingPositionY - i) == app.chooseBishop.positionY)
         ) {
           app.checkKing = 'black';
           return true;
+        } else { break };
+      }
+    }
+
+    // pawn
+    if (this.checkFigure(kingPositionX + 1, kingPositionY + 1, app)) {
+      if (this.getFigureColor(kingPositionX + 1, kingPositionY + 1, app) == 'white') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX + 1 && x.positionY == kingPositionY + 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'black';
+          return true;
         }
       }
     }
+
+    if (this.checkFigure(kingPositionX + 1, kingPositionY - 1, app)) {
+      if (this.getFigureColor(kingPositionX + 1, kingPositionY - 1, app) == 'white') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX + 1 && x.positionY == kingPositionY - 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'black';
+          return true;
+        }
+      }
+    }
+
+    if (this.checkFigure(kingPositionX - 1, kingPositionY + 1, app)) {
+      if (this.getFigureColor(kingPositionX - 1, kingPositionY + 1, app) == 'white') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX - 1 && x.positionY == kingPositionY + 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'black';
+          return true;
+        }
+      }
+    }
+
+    if (this.checkFigure(kingPositionX - 1, kingPositionY - 1, app)) {
+      if (this.getFigureColor(kingPositionX - 1, kingPositionY - 1, app) == 'white') {
+        if (Object.values(app).find(x => x.positionX == kingPositionX - 1 && x.positionY == kingPositionY - 1 && x.name.split('-')[1].split('')[0] == 'p')) {
+          app.checkKing = 'black';
+          return true;
+        }
+      }
+    } //--------end check white king
+
     return false;
   }
 
-  // gameOver(figure:Figure,app:AppComponent){
-  //   if(figure.color=='white'){
-  //     if(figure==app.whiteQueen){
-  //       if(app.whiteQueen)
-  //       for(let i=1;i<=8;i++){
+  gameOver(figure: Position, app: AppComponent) {
+    let checkArr: Position[] = [];
+    if (this.getFigureColor(figure.positionX, figure.positionY, app) == 'white') {
+      if (
+        (figure.positionX == app.whiteQueen.positionX && figure.positionY == app.whiteQueen.positionY)
+        ||
+        (figure.positionX == app.chooseQueen.positionX && figure.positionY == app.chooseQueen.positionY)
+      ) {
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX + i, figure.positionY, app) && this.getFigureColor(figure.positionX + i, figure.positionY, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX + i == app.blackKing.positionX && figure.positionY == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX + i,
+              positionY: figure.positionY
+            }];
+            return checkArr;
+          }
 
-  //       }
-  //     }
-  //   }
-  // }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX + i,
+            positionY: figure.positionY
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX - i, figure.positionY, app) && this.getFigureColor(figure.positionX - i, figure.positionY, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX - i == app.blackKing.positionX && figure.positionY == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX - i,
+              positionY: figure.positionY
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX - i,
+            positionY: figure.positionY
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX, figure.positionY + i, app) && this.getFigureColor(figure.positionX, figure.positionY + i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX == app.blackKing.positionX && figure.positionY + i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX,
+              positionY: figure.positionY + i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX,
+            positionY: figure.positionY + i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX, figure.positionY - i, app) && this.getFigureColor(figure.positionX, figure.positionY - i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX == app.blackKing.positionX && figure.positionY - i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX,
+              positionY: figure.positionY - i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX,
+            positionY: figure.positionY - i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX - i, figure.positionY - i, app) && this.getFigureColor(figure.positionX - i, figure.positionY - i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX - i == app.blackKing.positionX && figure.positionY - i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX - i,
+              positionY: figure.positionY - i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX - i,
+            positionY: figure.positionY - i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX - i, figure.positionY + i, app) && this.getFigureColor(figure.positionX - i, figure.positionY + i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX - i == app.blackKing.positionX && figure.positionY + i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX - i,
+              positionY: figure.positionY + i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX - i,
+            positionY: figure.positionY + i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX + i, figure.positionY - i, app) && this.getFigureColor(figure.positionX + i, figure.positionY - i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX + i == app.blackKing.positionX && figure.positionY - i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX + i,
+              positionY: figure.positionY - i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX + i,
+            positionY: figure.positionY - i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX + i, figure.positionY + i, app) && this.getFigureColor(figure.positionX + i, figure.positionY + i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX + i == app.blackKing.positionX && figure.positionY + i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX + i,
+              positionY: figure.positionY + i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX + i,
+            positionY: figure.positionY + i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+      }
+      // rock
+      if (
+        (figure.positionX == app.whiteRock.positionX && figure.positionY == app.whiteRock.positionY)
+        ||
+        (figure.positionX == app.whiteRock2.positionX && figure.positionY == app.whiteRock2.positionY)
+        ||
+        (figure.positionX == app.chooseRock.positionX && figure.positionY == app.chooseRock.positionY)
+      ) {
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX + i, figure.positionY, app) && this.getFigureColor(figure.positionX + i, figure.positionY, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX + i == app.blackKing.positionX && figure.positionY == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX + i,
+              positionY: figure.positionY
+            }];
+            return checkArr;
+          }
+
+          checkArr = [...checkArr, {
+            positionX: figure.positionX + i,
+            positionY: figure.positionY
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX - i, figure.positionY, app) && this.getFigureColor(figure.positionX - i, figure.positionY, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX - i == app.blackKing.positionX && figure.positionY == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX - i,
+              positionY: figure.positionY
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX - i,
+            positionY: figure.positionY
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX, figure.positionY + i, app) && this.getFigureColor(figure.positionX, figure.positionY + i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX == app.blackKing.positionX && figure.positionY + i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX,
+              positionY: figure.positionY + i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX,
+            positionY: figure.positionY + i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX, figure.positionY - i, app) && this.getFigureColor(figure.positionX, figure.positionY - i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX == app.blackKing.positionX && figure.positionY - i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX,
+              positionY: figure.positionY - i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX,
+            positionY: figure.positionY - i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+      }
+
+      // bishop
+      if (
+        (figure.positionX == app.whiteBishop.positionX && figure.positionY == app.whiteBishop.positionY)
+        ||
+        (figure.positionX == app.whiteBishop2.positionX && figure.positionY == app.whiteBishop2.positionY)
+        ||
+        (figure.positionX == app.chooseBishop.positionX && figure.positionY == app.chooseBishop.positionY)
+      ) {
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX - i, figure.positionY - i, app) && this.getFigureColor(figure.positionX - i, figure.positionY - i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX - i == app.blackKing.positionX && figure.positionY - i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX - i,
+              positionY: figure.positionY - i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX - i,
+            positionY: figure.positionY - i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX - i, figure.positionY + i, app) && this.getFigureColor(figure.positionX - i, figure.positionY + i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX - i == app.blackKing.positionX && figure.positionY + i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX - i,
+              positionY: figure.positionY + i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX - i,
+            positionY: figure.positionY + i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX + i, figure.positionY - i, app) && this.getFigureColor(figure.positionX + i, figure.positionY - i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX + i == app.blackKing.positionX && figure.positionY - i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX + i,
+              positionY: figure.positionY - i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX + i,
+            positionY: figure.positionY - i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+
+        for (let i = 1; i <= 8; i++) {
+          if (this.checkFigure(figure.positionX + i, figure.positionY + i, app) && this.getFigureColor(figure.positionX + i, figure.positionY + i, app) == 'white') {
+            checkArr = [];
+            break;
+          }
+          if (figure.positionX + i == app.blackKing.positionX && figure.positionY + i == app.blackKing.positionY) {
+            checkArr = [...checkArr, {
+              positionX: figure.positionX + i,
+              positionY: figure.positionY + i
+            }];
+            return checkArr;
+          }
+          checkArr = [...checkArr, {
+            positionX: figure.positionX + i,
+            positionY: figure.positionY + i
+          }];
+        }
+
+        if (!checkArr.find(x => x.positionX == app.blackKing.positionX && x.positionY == app.blackKing.positionY)) { checkArr = []; }
+      }
+
+      // knight
+      if (
+        (figure.positionX == app.whiteKnight.positionX && figure.positionY == app.whiteKnight.positionY)
+        ||
+        (figure.positionX == app.whiteKnight2.positionX && figure.positionY == app.whiteKnight2.positionY)
+        ||
+        (figure.positionX == app.chooseKnight.positionX && figure.positionY == app.chooseKnight.positionY)
+      ){
+        checkArr=[{
+          positionX:figure.positionX,
+          positionY:figure.positionY
+        }];
+        return checkArr;
+      }
+
+      // pawn
+      // if (
+      //   (figure.positionX == app.whiteKnight.positionX && figure.positionY == app.whiteKnight.positionY)
+      //   ||
+      //   (figure.positionX == app.whiteKnight2.positionX && figure.positionY == app.whiteKnight2.positionY)
+      //   ||
+      //   (figure.positionX == app.chooseKnight.positionX && figure.positionY == app.chooseKnight.positionY)
+      // ){
+      //   checkArr=[{
+      //     positionX:figure.positionX,
+      //     positionY:figure.positionY
+      //   }];
+      //   return checkArr;
+      // }
+
+
+    }
+    return checkArr;
+  }
 }
