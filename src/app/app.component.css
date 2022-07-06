@@ -46,37 +46,18 @@ div {
     background-color: green;
 }
 
-.submit-btn p {
-    padding: 5px;
-    border: 2px solid black;
+.submit {
     cursor: pointer;
-    transition: 1s;
-    width:120px;
-   
-    margin:5px;
-    cursor:pointer;
-    box-sizing:border-box;
-    margin-left:auto;
-    margin-right:auto;
-}
-
-.submit-btn p:hover {
-    transform: scale(1.1);
-    background-color: black;
-    color: white;
-}
-
-.submit-btn {
     margin-top:30px;
-    margin-left:10%;
-    margin-right:10%;
-    display:flex;
-    justify-content: center;
-    
+    width:60px;
+    height:60px;
+   display: flex;
+   left:48%;
+   right:auto;
+   position:sticky;
 }
 
 .rotate-board {
-    transition: 2.5s;
     transform: rotate(180deg);
 }
 
@@ -115,4 +96,33 @@ div {
     margin:5px;
     cursor:pointer;
     box-sizing:border-box;
+}
+
+.GameOver{
+    position:fixed;
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    top:40vh;
+    left:0px;
+    background-color: rgba(0, 0, 0, 0.786);
+    padding-top:20px;
+    padding-bottom:20px;
+}
+.GameOver p{
+    text-align: center;
+    color:white;
+    font-size: 30px;
+    font-weight: bolder;
+}
+
+@media(max-width:528px){
+    .chess-board{
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+}
+
+@media(max-width:500px){
+    
 }

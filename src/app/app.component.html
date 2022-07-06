@@ -101,49 +101,52 @@
         <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-pawn.png"
           *ngIf="figureRulesService.scannFigure(blackPawn8,row,column)">
 
-          <!-- choose figure -->
-          <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/rock.png"
+        <!-- choose figure -->
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/rock.png"
           *ngIf="figureRulesService.scannFigure(chooseRock,row,column)">
         <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-rock.png"
           *ngIf="figureRulesService.scannFigure(chooseBlackRock,row,column)">
 
-          <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/queen.png"
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/queen.png"
           *ngIf="figureRulesService.scannFigure(chooseQueen,row,column)">
         <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-queen.png"
           *ngIf="figureRulesService.scannFigure(chooseBlackQueen,row,column)">
 
-          <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/bishop.png"
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/bishop.png"
           *ngIf="figureRulesService.scannFigure(chooseBishop,row,column)">
         <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-bishop.png"
           *ngIf="figureRulesService.scannFigure(chooseBlackBishop,row,column)">
 
-          <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/knight.png"
+        <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/knight.png"
           *ngIf="figureRulesService.scannFigure(chooseKnight,row,column)">
         <img [ngClass]="{'rotate-board': isSubmited}" src="../assets/images/black-knight.png"
           *ngIf="figureRulesService.scannFigure(chooseBlackKnight,row,column)">
 
-          <div *ngIf="chooseWhite" class="choose-figure">
-            <div>
-              <img (click)='chooseFigure(figure)' *ngFor="let figure of chooseWhiteFigure"[src]="'../assets/images/'+figure+'.png'">
-            </div>
+        <div *ngIf="chooseWhite" class="choose-figure">
+          <div>
+            <img (click)='chooseFigure(figure)' *ngFor="let figure of chooseWhiteFigure"
+              [src]="'../assets/images/'+figure+'.png'">
           </div>
-          <div *ngIf='chooseBlack' class="choose-figure">
-            <div>
-              <img (click)='chooseFigure(figure)' *ngFor="let figure of chooseBlackFigure"[src]="'../assets/images/'+figure+'.png'">
-            </div>
+        </div>
+        <div *ngIf='chooseBlack' class="choose-figure">
+          <div>
+            <img (click)='chooseFigure(figure)' *ngFor="let figure of chooseBlackFigure"
+              [src]="'../assets/images/'+figure+'.png'">
           </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
-<div class="submit-btn">
-  <p (click)="submit()">დადასტურება</p>
-</div>
+
+<img class='submit' (click)="submit()" src='../assets/images/rotation.png'>
+
 <div class="kill-white-figure">
   <img *ngFor="let figure of deletedWhiteFigure" [src]="'../assets/images/'+figure+'.png'">
 </div>
 <div class="kill-black-figure">
   <img *ngFor="let figure of deletedBlackFigure" [src]="'../assets/images/'+figure+'.png'">
 </div>
-
-
+<div class='GameOver' *ngIf='isGameOver'>
+    <p>Game Over</p>
+</div>

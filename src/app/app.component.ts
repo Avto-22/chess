@@ -18,9 +18,12 @@ export class AppComponent implements OnInit {
 
   checkKing: string = '';
 
-
+  isGameOver:boolean=false;
 
   isKillTarget: boolean = false;
+
+  isWhiteMove:boolean=true;
+  isBlackMove:boolean=false;
 
   chooseWhiteFigure: string[] = ['queen', 'rock', 'bishop', 'knight'];
   chooseBlackFigure: string[] = ['black-queen', 'black-rock', 'black-bishop', 'black-knight'];
@@ -39,7 +42,6 @@ export class AppComponent implements OnInit {
 
   isSubmited: boolean;
 
-  isGameOver: boolean;
 
   check: boolean = false;
 
@@ -401,6 +403,8 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // ...
+    if(this.isWhiteMove){
+      this.submit();
+    }
   }
 }

@@ -846,139 +846,191 @@ export class FigureRulesService {
     } if (!this.checkFigure(positionX, positionY, app) || this.checkFigure(positionX, positionY, app)) {
       if (this.scannFigure(app.whiteKing, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKing(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteKing;
-          app.whiteKing = {
-            name: 'white-king',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteKing = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteKing;
+            app.whiteKing = {
+              name: 'white-king',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteKing = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          app.isKillTarget = false;
-          return;
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whiteRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteRock;
-          app.whiteRock = {
-            name: 'white-rock',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteRock = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteRock;
+            app.whiteRock = {
+              name: 'white-rock',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteRock = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whiteRock.positionX, positionY: app.whiteRock.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whiteRock.positionX, positionY: app.whiteRock.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whiteBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteBishop;
-          app.whiteBishop = {
-            name: 'white-bishop',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteBishop = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteBishop;
+            app.whiteBishop = {
+              name: 'white-bishop',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteBishop = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whiteBishop.positionX, positionY: app.whiteBishop.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whiteBishop.positionX, positionY: app.whiteBishop.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whiteKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteKnight;
-          app.whiteKnight = {
-            name: 'white-knight',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteKnight = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteKnight;
+            app.whiteKnight = {
+              name: 'white-knight',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteKnight = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whiteKnight.positionX, positionY: app.whiteKnight.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whiteKnight.positionX, positionY: app.whiteKnight.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whiteQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkQueen(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteQueen;
-          app.whiteQueen = {
-            name: 'white-queen',
-            color: 'white',
-            positionX,
-            positionY
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteQueen;
+            app.whiteQueen = {
+              name: 'white-queen',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteQueen = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whiteQueen.positionX, positionY: app.whiteQueen.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteQueen = saveFigure;
+          else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whiteQueen.positionX, positionY: app.whiteQueen.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-
-          app.isKillTarget = false;
-          return;
         }
         else {
           console.log('invalid position')
@@ -987,87 +1039,120 @@ export class FigureRulesService {
       // -----------------------------
       else if (this.scannFigure(app.whiteRock2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteRock2;
-          app.whiteRock2 = {
-            name: 'white-rock2',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteRock2 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteRock2;
+            app.whiteRock2 = {
+              name: 'white-rock2',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteRock2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whiteRock2.positionX, positionY: app.whiteRock2.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whiteRock2.positionX, positionY: app.whiteRock2.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whiteBishop2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteBishop2;
-          app.whiteBishop2 = {
-            name: 'white-bishop2',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteBishop2 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteBishop2;
+            app.whiteBishop2 = {
+              name: 'white-bishop2',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteBishop2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whiteBishop2.positionX, positionY: app.whiteBishop2.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whiteBishop2.positionX, positionY: app.whiteBishop2.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whiteKnight2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whiteKnight2;
-          app.whiteKnight2 = {
-            name: 'white-knight2',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whiteKnight2 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whiteKnight2;
+            app.whiteKnight2 = {
+              name: 'white-knight2',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whiteKnight2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whiteKnight2.positionX, positionY: app.whiteKnight2.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whiteKnight2.positionX, positionY: app.whiteKnight2.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
@@ -1076,138 +1161,193 @@ export class FigureRulesService {
       // ----------------------------------------------------------------------------------------------
       else if (this.scannFigure(app.blackKing, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKing(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackKing;
-          app.blackKing = {
-            name: 'black-king',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackKing = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackKing;
+            app.blackKing = {
+              name: 'black-king',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackKing = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackRock;
-          app.blackRock = {
-            name: 'black-rock',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackRock = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackRock;
+            app.blackRock = {
+              name: 'black-rock',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackRock = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackRock.positionX, positionY: app.blackRock.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackRock.positionX, positionY: app.blackRock.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackBishop;
-          app.blackBishop = {
-            name: 'black-bishop',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackBishop = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackBishop;
+            app.blackBishop = {
+              name: 'black-bishop',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackBishop = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackBishop.positionX, positionY: app.blackBishop.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackBishop.positionX, positionY: app.blackBishop.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackKnight;
-          app.blackKnight = {
-            name: 'black-knight',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackKnight = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackKnight;
+            app.blackKnight = {
+              name: 'black-knight',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackKnight = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackKnight.positionX, positionY: app.blackKnight.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackKnight.positionX, positionY: app.blackKnight.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkQueen(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackQueen;
-          app.blackQueen = {
-            name: 'black-queen',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackQueen = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackQueen;
+            app.blackQueen = {
+              name: 'black-queen',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackQueen = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackQueen.positionX, positionY: app.blackQueen.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackQueen.positionX, positionY: app.blackQueen.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
@@ -1217,313 +1357,434 @@ export class FigureRulesService {
       // -----------------------------
       else if (this.scannFigure(app.blackRock2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackRock2;
-          app.blackRock2 = {
-            name: 'black-rock2',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackRock2 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackRock2;
+            app.blackRock2 = {
+              name: 'black-rock2',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackRock2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackRock2.positionX, positionY: app.blackRock2.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackRock2.positionX, positionY: app.blackRock2.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackBishop2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackBishop2;
-          app.blackBishop2 = {
-            name: 'black-bishop2',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackBishop2 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackBishop2;
+            app.blackBishop2 = {
+              name: 'black-bishop2',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackBishop2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackBishop2.positionX, positionY: app.blackBishop2.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackBishop2.positionX, positionY: app.blackBishop2.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackKnight2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackKnight2;
-          app.blackKnight2 = {
-            name: 'black-knight2',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackKnight2 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackKnight2;
+            app.blackKnight2 = {
+              name: 'black-knight2',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackKnight2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackKnight2.positionX, positionY: app.blackKnight2.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackKnight2.positionX, positionY: app.blackKnight2.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         }
         else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn1, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn1.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn1;
-          app.blackPawn1 = {
-            name: 'black-pawn1',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn1 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn1;
+            app.blackPawn1 = {
+              name: 'black-pawn1',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn1 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn1.positionX, positionY: app.blackPawn1.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn1.positionX, positionY: app.blackPawn1.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       }
       else if (this.scannFigure(app.blackPawn2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn2.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn2;
-          app.blackPawn2 = {
-            name: 'black-pawn2',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn2 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn2;
+            app.blackPawn2 = {
+              name: 'black-pawn2',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn2.positionX, positionY: app.blackPawn2.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn2.positionX, positionY: app.blackPawn2.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn3, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn3.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn3;
-          app.blackPawn3 = {
-            name: 'black-pawn3',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn3 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn3;
+            app.blackPawn3 = {
+              name: 'black-pawn3',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn3 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn3.positionX, positionY: app.blackPawn3.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn3.positionX, positionY: app.blackPawn3.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn4, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn4.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn4;
-          app.blackPawn4 = {
-            name: 'black-pawn4',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn4 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn4;
+            app.blackPawn4 = {
+              name: 'black-pawn4',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn4 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn4.positionX, positionY: app.blackPawn4.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn4.positionX, positionY: app.blackPawn4.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn5, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn5.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn5;
-          app.blackPawn5 = {
-            name: 'black-pawn5',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn5 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn5;
+            app.blackPawn5 = {
+              name: 'black-pawn5',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn5 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn5.positionX, positionY: app.blackPawn5.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn5.positionX, positionY: app.blackPawn5.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn6, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn6.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn6;
-          app.blackPawn6 = {
-            name: 'black-pawn6',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn6 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn6;
+            app.blackPawn6 = {
+              name: 'black-pawn6',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn6 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn6.positionX, positionY: app.blackPawn6.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn6.positionX, positionY: app.blackPawn6.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn7, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn7.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn7;
-          app.blackPawn7 = {
-            name: 'black-pawn7',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn7 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn7;
+            app.blackPawn7 = {
+              name: 'black-pawn7',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn7 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn7.positionX, positionY: app.blackPawn7.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn7.positionX, positionY: app.blackPawn7.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.blackPawn8, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBlackkPawn(app.blackPawn8.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.blackPawn8;
-          app.blackPawn8 = {
-            name: 'black-pawn8',
-            color: 'black',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.blackPawn8 = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.blackPawn8;
+            app.blackPawn8 = {
+              name: 'black-pawn8',
+              color: 'black',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.blackPawn8 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.blackPawn8.positionX, positionY: app.blackPawn8.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.blackPawn8.positionX, positionY: app.blackPawn8.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
@@ -1531,227 +1792,315 @@ export class FigureRulesService {
       // ----------------------------------------------------------
       else if (this.scannFigure(app.whitePawn1, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn1.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn1
-          app.whitePawn1 = {
-            name: 'white-pawn1',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn1 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn1
+            app.whitePawn1 = {
+              name: 'white-pawn1',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn1 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn1.positionX, positionY: app.whitePawn1.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn1.positionX, positionY: app.whitePawn1.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       }
       else if (this.scannFigure(app.whitePawn2, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn2.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn2;
-          app.whitePawn2 = {
-            name: 'white-pawn2',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn2 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn2;
+            app.whitePawn2 = {
+              name: 'white-pawn2',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn2 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn2.positionX, positionY: app.whitePawn2.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn2.positionX, positionY: app.whitePawn2.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn3, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn3.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn3;
-          app.whitePawn3 = {
-            name: 'white-pawn3',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn3 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn3;
+            app.whitePawn3 = {
+              name: 'white-pawn3',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn3 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn3.positionX, positionY: app.whitePawn3.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn3.positionX, positionY: app.whitePawn3.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position');
         }
       } else if (this.scannFigure(app.whitePawn4, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn4.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn4;
-          app.whitePawn4 = {
-            name: 'white-pawn4',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn4 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn4;
+            app.whitePawn4 = {
+              name: 'white-pawn4',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn4 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn4.positionX, positionY: app.whitePawn4.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn4.positionX, positionY: app.whitePawn4.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn5, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn5.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn5;
-          app.whitePawn5 = {
-            name: 'white-pawn5',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn5 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn5;
+            app.whitePawn5 = {
+              name: 'white-pawn5',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn5 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn5.positionX, positionY: app.whitePawn5.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn5.positionX, positionY: app.whitePawn5.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn6, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn6.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn6;
-          app.whitePawn6 = {
-            name: 'white-pawn6',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn6 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn6;
+            app.whitePawn6 = {
+              name: 'white-pawn6',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn6 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn6.positionX, positionY: app.whitePawn6.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn6.positionX, positionY: app.whitePawn6.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.whitePawn7, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn7.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn7;
-          app.whitePawn7 = {
-            name: 'white-pawn7',
-            color: 'white',
-            positionX,
-            positionY
-          }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn7 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn7;
+            app.whitePawn7 = {
+              name: 'white-pawn7',
+              color: 'white',
+              positionX,
+              positionY
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn7 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn7.positionX, positionY: app.whitePawn7.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn7.positionX, positionY: app.whitePawn7.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
 
       } else if (this.scannFigure(app.whitePawn8, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkPawn(app.whitePawn8.name, app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.whitePawn8;
-          app.whitePawn8 = {
-            name: 'white-pawn8',
-            color: 'white',
-            positionX,
-            positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.whitePawn8 = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.whitePawn8;
+            app.whitePawn8 = {
+              name: 'white-pawn8',
+              color: 'white',
+              positionX,
+              positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.whitePawn8 = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.whitePawn8.positionX, positionY: app.whitePawn8.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.whitePawn8.positionX, positionY: app.whitePawn8.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
@@ -1759,225 +2108,313 @@ export class FigureRulesService {
       // choose figure
       else if (this.scannFigure(app.chooseQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkQueen(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseQueen;
-          app.chooseQueen = {
-            name: 'queen',
-            color: 'white',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.chooseQueen = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.chooseQueen;
+            app.chooseQueen = {
+              name: 'queen',
+              color: 'white',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.chooseQueen = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseQueen.positionX, positionY: app.chooseQueen.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseQueen.positionX, positionY: app.chooseQueen.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.chooseBlackQueen, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkQueen(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseBlackQueen;
-          app.chooseBlackQueen = {
-            name: 'black-queen',
-            color: 'black',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.chooseBlackQueen = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.chooseBlackQueen;
+            app.chooseBlackQueen = {
+              name: 'black-queen',
+              color: 'black',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.chooseBlackQueen = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseBlackQueen.positionX, positionY: app.chooseBlackQueen.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseBlackQueen.positionX, positionY: app.chooseBlackQueen.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.chooseRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseRock;
-          app.chooseRock = {
-            name: 'rock',
-            color: 'white',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.chooseRock = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.chooseRock;
+            app.chooseRock = {
+              name: 'rock',
+              color: 'white',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.chooseRock = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseRock.positionX, positionY: app.chooseRock.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseRock.positionX, positionY: app.chooseRock.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.chooseBlackRock, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkRock(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseBlackRock;
-          app.chooseBlackRock = {
-            name: 'black-rock',
-            color: 'black',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.chooseBlackRock = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.chooseBlackRock;
+            app.chooseBlackRock = {
+              name: 'black-rock',
+              color: 'black',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.chooseBlackRock = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseBlackRock.positionX, positionY: app.chooseBlackRock.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseBlackRock.positionX, positionY: app.chooseBlackRock.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.chooseBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseBishop;
-          app.chooseBishop = {
-            name: 'bishop',
-            color: 'white',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.chooseBishop = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.chooseBishop;
+            app.chooseBishop = {
+              name: 'bishop',
+              color: 'white',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.chooseBishop = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseBishop.positionX, positionY: app.chooseBishop.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseBishop.positionX, positionY: app.chooseBishop.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.chooseBlackBishop, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkBishop(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseBlackBishop;
-          app.chooseBlackBishop = {
-            name: 'black-bishop',
-            color: 'black',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.chooseBlackBishop = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.chooseBlackBishop;
+            app.chooseBlackBishop = {
+              name: 'black-bishop',
+              color: 'black',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.chooseBlackBishop = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseBlackBishop.positionX, positionY: app.chooseBlackBishop.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseBlackBishop.positionX, positionY: app.chooseBlackBishop.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.chooseKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseKnight;
-          app.chooseKnight = {
-            name: 'knight',
-            color: 'white',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            app.chooseKnight = saveFigure;
+          if (app.isWhiteMove) {
+            let saveFigure = app.chooseKnight;
+            app.chooseKnight = {
+              name: 'knight',
+              color: 'white',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              app.chooseKnight = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseKnight.positionX, positionY: app.chooseKnight.positionY }, app), 'white', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isWhiteMove = false;
+            app.isBlackMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseKnight.positionX, positionY: app.chooseKnight.positionY }, app), 'white', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
       } else if (this.scannFigure(app.chooseBlackKnight, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.checkKnight(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
-          let saveFigure = app.chooseBlackKnight;
-          app.chooseBlackKnight = {
-            name: 'black-knight',
-            color: 'black',
-            positionX: positionX,
-            positionY: positionY
-          };
-          if (this.checkScanner(app) && app.checkKing == 'black') {
-            app.chooseBlackKnight = saveFigure;
+          if (app.isBlackMove) {
+            let saveFigure = app.chooseBlackKnight;
+            app.chooseBlackKnight = {
+              name: 'black-knight',
+              color: 'black',
+              positionX: positionX,
+              positionY: positionY
+            };
+            if (this.checkScanner(app) && app.checkKing == 'black') {
+              app.chooseBlackKnight = saveFigure;
+              if (app.isKillTarget) {
+                this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }
+              console.log('ქიში გეხსნება მეგობარო');
+            }
+            if (this.checkScanner(app) && app.checkKing == 'white') {
+              if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
+                if (this.end(this.gameOver({ positionX: app.chooseBlackKnight.positionX, positionY: app.chooseBlackKnight.positionY }, app), 'black', app)) {
+                  app.isGameOver=true;
+                }
+              }
+            }
+            app.isKillTarget = false;
+            app.isBlackMove = false;
+            app.isWhiteMove = true;
+            return;
+          } else {
+            app.nextPosition.positionX = positionX;
+            app.nextPosition.positionY = positionY;
             if (app.isKillTarget) {
               this.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
             }
-            console.log('ქიში გეხსნება მეგობარო');
           }
-          if (this.checkScanner(app) && app.checkKing == 'white') {
-            if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
-              if (this.end(this.gameOver({ positionX: app.chooseBlackKnight.positionX, positionY: app.chooseBlackKnight.positionY }, app), 'black', app)) {
-                alert('Game over!');
-              }
-            }
-          }
-          app.isKillTarget = false;
-          return;
+
         } else {
           console.log('invalid position')
         }
@@ -4531,6 +4968,43 @@ export class FigureRulesService {
     return [...this.rockMove(positionX, positionY, app), ...this.bishopMove(positionX, positionY, app)];
   }
 
+  kingMove(positionX: number, positionY: number) {
+    return [
+      {
+        positionX: positionX + 1,
+        positionY
+      },
+      {
+        positionX: positionX - 1,
+        positionY
+      },
+      {
+        positionX,
+        positionY: positionY + 1
+      },
+      {
+        positionX,
+        positionY: positionY - 1
+      },
+      {
+        positionX: positionX + 1,
+        positionY: positionY + 1
+      },
+      {
+        positionX: positionX + 1,
+        positionY: positionY - 1
+      },
+      {
+        positionX: positionX - 1,
+        positionY: positionY + 1
+      },
+      {
+        positionX: positionX - 1,
+        positionY: positionY - 1
+      }
+    ]
+  }
+
   end(checkArr: Position[], color: string, app: AppComponent): boolean {
     let moveArr: Position[];
     if (color == 'white') {
@@ -4734,6 +5208,26 @@ export class FigureRulesService {
         }
       }
 
+      moveArr = this.kingMove(app.blackKing.positionX, app.blackKing.positionY);
+      for (let i = 0; i < checkArr.length; i++) {
+        for (let j = 0; j < moveArr.length; j++) {
+          if (checkArr[i].positionX == moveArr[j].positionX && checkArr[i].positionY == moveArr[j].positionY) {
+            let saveFigure = app.blackKing;
+            app.blackKing = {
+              ...app.blackKing,
+              positionX: checkArr[i].positionX,
+              positionY: checkArr[i].positionY
+            }
+            if (!this.checkScanner(app)) {
+              app.blackKing = saveFigure;
+              return false;
+            }
+            app.blackKing = saveFigure;
+          }
+        }
+      }
+
+
       let saveFigure = app.blackKing;
       let left: boolean = false;
       let right: boolean = false;
@@ -4897,7 +5391,7 @@ export class FigureRulesService {
 
       if (left && right && top && topLef && topRigt && bottom && bottomLeft && bottomRight) {
         return true;
-      }else{
+      } else {
         return false;
       }
     }
@@ -5103,6 +5597,25 @@ export class FigureRulesService {
         }
       }
 
+      moveArr = this.kingMove(app.whiteKing.positionX, app.whiteKing.positionY);
+      for (let i = 0; i < checkArr.length; i++) {
+        for (let j = 0; j < moveArr.length; j++) {
+          if (checkArr[i].positionX == moveArr[j].positionX && checkArr[i].positionY == moveArr[j].positionY) {
+            let saveFigure = app.whiteKing;
+            app.whiteKing = {
+              ...app.whiteKing,
+              positionX: checkArr[i].positionX,
+              positionY: checkArr[i].positionY
+            }
+            if (!this.checkScanner(app)) {
+              app.whiteKing = saveFigure;
+              return false;
+            }
+            app.whiteKing = saveFigure;
+          }
+        }
+      }
+
       let saveFigure = app.whiteKing;
       let left: boolean = false;
       let right: boolean = false;
@@ -5266,11 +5779,10 @@ export class FigureRulesService {
 
       if (left && right && top && topLef && topRigt && bottom && bottomLeft && bottomRight) {
         return true;
-      }else{
+      } else {
         return false;
       }
     }
     return true;
   }
-
 }
