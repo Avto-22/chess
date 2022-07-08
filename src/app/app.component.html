@@ -150,4 +150,5 @@
 <div class='GameOver' *ngIf='isGameOver'>
     <p class="text">Game Over</p>
     <p>{{isWhiteMove?'Black':'White'}} Winn!</p>
+    <p class='rematch' (click)='rematch()'>rematch</p>
 </div>

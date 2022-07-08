@@ -103,7 +103,7 @@ div {
     width:100%;
     display:flex;
     flex-direction: column;
-    top:30vh;
+    top:25vh;
     left:0px;
     background-color: rgba(0, 0, 0, 0.786);
     padding-top:20px;
@@ -120,13 +120,21 @@ div {
     color:red;
 }
 
+.GameOver .rematch{
+    color: goldenrod;
+    font-weight: bolder;
+    font-size: xx-large;
+    cursor:pointer;
+    transition: .5s;
+}
+
+.GameOver .rematch:hover{
+    color: greenyellow;
+}
+
 @media(max-width:528px){
     .chess-board{
         margin-left: 10px;
         margin-right: 10px;
     }
-}
-
-@media(max-width:500px){
-    
 }
