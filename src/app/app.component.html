@@ -148,5 +148,6 @@
   <img *ngFor="let figure of deletedBlackFigure" [src]="'../assets/images/'+figure+'.png'">
 </div>
 <div class='GameOver' *ngIf='isGameOver'>
-    <p>Game Over</p>
+    <p class="text">Game Over</p>
+    <p>{{isWhiteMove?'Black':'White'}} Winn!</p>
 </div>

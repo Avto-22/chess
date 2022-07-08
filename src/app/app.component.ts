@@ -8,7 +8,9 @@ import { FigureRulesService } from './figure-rules.service'
 })
 export class AppComponent implements OnInit {
   title = 'chess';
+  
   constructor(public figureRulesService: FigureRulesService) { }
+
   columnrray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   rowArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   nextPosition: Position = {

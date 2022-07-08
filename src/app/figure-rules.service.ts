@@ -862,8 +862,10 @@ export class FigureRulesService {
               console.log('ქიში გეხსნება მეგობარო');
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -896,13 +898,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whiteRock.positionX, positionY: app.whiteRock.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -935,13 +939,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whiteBishop.positionX, positionY: app.whiteBishop.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -974,13 +980,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whiteKnight.positionX, positionY: app.whiteKnight.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1014,14 +1022,16 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whiteQueen.positionX, positionY: app.whiteQueen.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
 
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           }
           else {
@@ -1057,13 +1067,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whiteRock2.positionX, positionY: app.whiteRock2.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1097,13 +1109,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whiteBishop2.positionX, positionY: app.whiteBishop2.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1137,13 +1151,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whiteKnight2.positionX, positionY: app.whiteKnight2.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1177,8 +1193,11 @@ export class FigureRulesService {
               console.log('ქიში გეხსნება მეგობარო');
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
+
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1212,13 +1231,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackRock.positionX, positionY: app.blackRock.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1252,13 +1273,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackBishop.positionX, positionY: app.blackBishop.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1292,13 +1315,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackKnight.positionX, positionY: app.blackKnight.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1332,13 +1357,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackQueen.positionX, positionY: app.blackQueen.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1375,13 +1402,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackRock2.positionX, positionY: app.blackRock2.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1415,13 +1444,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackBishop2.positionX, positionY: app.blackBishop2.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1455,13 +1486,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackKnight2.positionX, positionY: app.blackKnight2.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1495,13 +1528,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn1.positionX, positionY: app.blackPawn1.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1535,13 +1570,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn2.positionX, positionY: app.blackPawn2.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1574,13 +1611,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn3.positionX, positionY: app.blackPawn3.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1613,13 +1652,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn4.positionX, positionY: app.blackPawn4.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1652,13 +1693,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn5.positionX, positionY: app.blackPawn5.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1691,13 +1734,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn6.positionX, positionY: app.blackPawn6.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1730,13 +1775,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn7.positionX, positionY: app.blackPawn7.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1769,13 +1816,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.blackPawn8.positionX, positionY: app.blackPawn8.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1810,13 +1859,16 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn1.positionX, positionY: app.whitePawn1.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
+
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1850,13 +1902,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn2.positionX, positionY: app.whitePawn2.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1889,13 +1943,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn3.positionX, positionY: app.whitePawn3.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1928,13 +1984,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn4.positionX, positionY: app.whitePawn4.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1967,13 +2025,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn5.positionX, positionY: app.whitePawn5.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2006,13 +2066,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn6.positionX, positionY: app.whitePawn6.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2045,13 +2107,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn7.positionX, positionY: app.whitePawn7.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2085,13 +2149,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.whitePawn8.positionX, positionY: app.whitePawn8.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2126,13 +2192,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseQueen.positionX, positionY: app.chooseQueen.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2165,13 +2233,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseBlackQueen.positionX, positionY: app.chooseBlackQueen.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2204,13 +2274,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseRock.positionX, positionY: app.chooseRock.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2243,13 +2315,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseBlackRock.positionX, positionY: app.chooseBlackRock.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2282,13 +2356,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseBishop.positionX, positionY: app.chooseBishop.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2321,13 +2397,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseBlackBishop.positionX, positionY: app.chooseBlackBishop.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2360,13 +2438,15 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'black') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseKnight.positionX, positionY: app.chooseKnight.positionY }, app), 'white', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isWhiteMove = false;
-            app.isBlackMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'white')) {
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
+            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -2399,13 +2479,16 @@ export class FigureRulesService {
             if (this.checkScanner(app) && app.checkKing == 'white') {
               if (this.checkMaker.positionX == saveFigure.positionX && this.checkMaker.positionY == saveFigure.positionY) {
                 if (this.end(this.gameOver({ positionX: app.chooseBlackKnight.positionX, positionY: app.chooseBlackKnight.positionY }, app), 'black', app)) {
-                  app.isGameOver=true;
+                  app.isGameOver = true;
                 }
               }
             }
             app.isKillTarget = false;
-            app.isBlackMove = false;
-            app.isWhiteMove = true;
+            if (!(this.checkScanner(app) && app.checkKing == 'black')) {
+              app.isBlackMove = false;
+              app.isWhiteMove = true;
+            }
+
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -5240,7 +5323,7 @@ export class FigureRulesService {
 
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && saveFigure.positionX-1 < 1)
           ||
           this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
         )
@@ -5249,63 +5332,63 @@ export class FigureRulesService {
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY, app) != 'white' && saveFigure.positionX+1 > 8)
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
+          this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY, app) == 'black'
         )
       ) {
         bottom = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX, saveFigure.positionY + 1, app) != 'white' && saveFigure.positionY+1 > 8)
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
+          this.getFigureColor(saveFigure.positionX, saveFigure.positionY + 1, app) == 'black'
         )
       ) {
         right = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX, saveFigure.positionY - 1, app) != 'white' && saveFigure.positionY-1 < 1)
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
+          this.getFigureColor(saveFigure.positionX, saveFigure.positionY - 1, app) == 'black'
         )
       ) {
         left = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY - 1, app) != 'white' && (saveFigure.positionX-1 < 1 || (saveFigure.positionY-1 < 1 )))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
+          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY - 1, app) == 'black'
         )
       ) {
         topLef = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY + 1, app) != 'white' && ((saveFigure.positionX-1 < 1) || (saveFigure.positionY+1 > 8)))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
+          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY + 1, app) == 'black'
         )
       ) {
         topRigt = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY - 1, app) != 'white' && ((saveFigure.positionX+1 > 8) || (saveFigure.positionY-1 < 1)))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
+          this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY - 1, app) == 'black'
         )
       ) {
         bottomLeft = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'white' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY + 1, app) != 'white' && ((saveFigure.positionX+1 > 8) || (saveFigure.positionY+1 > 8)))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'black'
+          this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY + 1, app) == 'black'
         )
       ) {
         bottomRight = true;
@@ -5628,7 +5711,7 @@ export class FigureRulesService {
 
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && saveFigure.positionX-1 < 1)
           ||
           this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
         )
@@ -5637,71 +5720,71 @@ export class FigureRulesService {
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY, app) != 'black' && saveFigure.positionX+1 > 8)
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
+          this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY, app) == 'white'
         )
       ) {
         bottom = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX, saveFigure.positionY + 1, app) != 'black' && saveFigure.positionY+1 > 8)
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
+          this.getFigureColor(saveFigure.positionX, saveFigure.positionY + 1, app) == 'white'
         )
       ) {
         right = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX, saveFigure.positionY - 1, app) != 'black' && saveFigure.positionY-1 < 1)
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
+          this.getFigureColor(saveFigure.positionX, saveFigure.positionY - 1, app) == 'white'
         )
       ) {
         left = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY - 1, app) != 'black' && (saveFigure.positionX-1 < 1 || (saveFigure.positionY-1 < 1 )))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
+          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY - 1, app) == 'white'
         )
       ) {
         topLef = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY + 1, app) != 'black' && ((saveFigure.positionX-1 < 1) || (saveFigure.positionY+1 > 8)))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
+          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY + 1, app) == 'white'
         )
       ) {
         topRigt = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY - 1, app) != 'black' && ((saveFigure.positionX+1 > 8) || (saveFigure.positionY-1 < 1)))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
+          this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY - 1, app) == 'white'
         )
       ) {
         bottomLeft = true;
       }
       if (
         (
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) != 'black' && ((saveFigure.positionX < 1 || saveFigure.positionX > 8) || (saveFigure.positionY < 1 || saveFigure.positionY > 8))
+          (this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY + 1, app) != 'black' && ((saveFigure.positionX+1 > 8) || (saveFigure.positionY+1 > 8)))
           ||
-          this.getFigureColor(saveFigure.positionX - 1, saveFigure.positionY, app) == 'white'
+          this.getFigureColor(saveFigure.positionX + 1, saveFigure.positionY + 1, app) == 'white'
         )
       ) {
         bottomRight = true;
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionX: app.whiteKing.positionX + 1
+        ...saveFigure,
+        positionX: saveFigure.positionX + 1
       };
 
       if (this.checkScanner(app)) {
@@ -5709,8 +5792,8 @@ export class FigureRulesService {
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionX: app.whiteKing.positionX - 1
+        ...saveFigure,
+        positionX: saveFigure.positionX - 1
       };
 
       if (this.checkScanner(app)) {
@@ -5718,8 +5801,8 @@ export class FigureRulesService {
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionY: app.whiteKing.positionY + 1
+        ...saveFigure,
+        positionY: saveFigure.positionY + 1
       };
 
       if (this.checkScanner(app)) {
@@ -5727,8 +5810,8 @@ export class FigureRulesService {
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionY: app.whiteKing.positionY - 1
+        ...saveFigure,
+        positionY: saveFigure.positionY - 1
       };
 
       if (this.checkScanner(app)) {
@@ -5736,9 +5819,9 @@ export class FigureRulesService {
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionX: app.whiteKing.positionX + 1,
-        positionY: app.whiteKing.positionY + 1
+        ...saveFigure,
+        positionX: saveFigure.positionX + 1,
+        positionY: saveFigure.positionY + 1
       };
 
       if (this.checkScanner(app)) {
@@ -5746,9 +5829,9 @@ export class FigureRulesService {
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionX: app.whiteKing.positionX + 1,
-        positionY: app.whiteKing.positionY - 1
+        ...saveFigure,
+        positionX: saveFigure.positionX + 1,
+        positionY: saveFigure.positionY - 1
       };
 
       if (this.checkScanner(app)) {
@@ -5756,9 +5839,9 @@ export class FigureRulesService {
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionX: app.whiteKing.positionX - 1,
-        positionY: app.whiteKing.positionY - 1
+        ...saveFigure,
+        positionX: saveFigure.positionX - 1,
+        positionY: saveFigure.positionY - 1
       };
 
       if (this.checkScanner(app)) {
@@ -5766,9 +5849,9 @@ export class FigureRulesService {
       }
 
       app.whiteKing = {
-        ...app.whiteKing,
-        positionX: app.whiteKing.positionX - 1,
-        positionY: app.whiteKing.positionY + 1
+        ...saveFigure,
+        positionX: saveFigure.positionX - 1,
+        positionY: saveFigure.positionY + 1
       };
 
       if (this.checkScanner(app)) {
