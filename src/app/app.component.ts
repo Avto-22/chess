@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChooseFigure, EndPawn, Position, KilledFigure } from './app.model';
+import { FigureFunctionService } from './figure-function.service';
 import { FigureRulesService } from './figure-rules.service'
 @Component({
   selector: 'app-root',
@@ -9,7 +10,10 @@ import { FigureRulesService } from './figure-rules.service'
 export class AppComponent implements OnInit {
   title = 'chess';
 
-  constructor(public figureRulesService: FigureRulesService) { }
+  constructor(
+    public figureRulesService: FigureRulesService,
+    public figureFunctionService:FigureFunctionService
+    ) { }
 
   columnrray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   rowArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -17,6 +21,7 @@ export class AppComponent implements OnInit {
     positionX: -1,
     positionY: -1
   };
+  checkMaker: Position;
 
   checkKing: string = '';
 
@@ -43,7 +48,6 @@ export class AppComponent implements OnInit {
   }
 
   isSubmited: boolean;
-
 
   check: boolean = false;
 
@@ -339,7 +343,7 @@ export class AppComponent implements OnInit {
   chooseFigure(figure: string) {
     let positionX: number = this.endPawn.pawnPositionX;
     let positionY: number = this.endPawn.pawnPositionY;
-    this.figureRulesService.deleteOrRestoreFigure(true, false, this.endPawn.pawnName, this);
+    this.figureFunctionService.deleteOrRestoreFigure(true, false, this.endPawn.pawnName, this);
     // ------------------------- white figure
     if (figure == 'queen') {
       this.chooseQueen = {
@@ -410,10 +414,13 @@ export class AppComponent implements OnInit {
     this.isKillTarget = false;
     this.isWhiteMove = true;
     this.isBlackMove = false;
-    this.chooseWhiteFigure = ['queen', 'rock', 'bishop', 'knight'];
-    this.chooseBlackFigure = ['black-queen', 'black-rock', 'black-bishop', 'black-knight'];
     this.chooseWhite = false;
     this.chooseBlack = false;
+    this.isSubmited = false;
+    this.check = false;
+    this.deletedBlackFigure = [];
+    this.deletedWhiteFigure = [];
+
     this.lastKilledFigure = {
       killedName: '',
       killedColor: '',
