@@ -35,6 +35,7 @@ checkScanner(app: AppComponent) {
         ((kingPositionX - i) == app.chooseBlackRock.positionX && kingPositionY == app.chooseBlackRock.positionY)
       ) {
         app.checkKing = 'white';
+        console.log('ქიში');
         return true;
       } else { break };
     }

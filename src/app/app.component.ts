@@ -1,3 +1,5 @@
+import { CheckService } from './check.service';
+import { GameOverService } from './game-over.service';
 import { Component, OnInit } from '@angular/core';
 import { ChooseFigure, EndPawn, Position, KilledFigure } from './app.model';
 import { FigureFunctionService } from './figure-function.service';
@@ -12,8 +14,10 @@ export class AppComponent implements OnInit {
 
   constructor(
     public figureRulesService: FigureRulesService,
-    public figureFunctionService:FigureFunctionService
-    ) { }
+    public figureFunctionService: FigureFunctionService,
+    private gameOverService: GameOverService,
+    private checkService: CheckService
+  ) { }
 
   columnrray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
   rowArray: number[] = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -24,6 +28,8 @@ export class AppComponent implements OnInit {
   checkMaker: Position;
 
   checkKing: string = '';
+
+  lastFigureColor: string='';
 
   isGameOver: boolean = false;
 
@@ -351,12 +357,33 @@ export class AppComponent implements OnInit {
         positionX,
         positionY
       }
+
+      if (this.checkService.checkScanner(this) && this.checkKing == 'black') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'white', this)) {
+          this.isGameOver = true;
+        }
+      }
     }
     if (figure == 'rock') {
       this.chooseRock = {
         ...this.chooseRock,
         positionX,
         positionY
+      }
+      if (this.checkService.checkScanner(this) && this.checkKing == 'black') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'white', this)) {
+          this.isGameOver = true;
+        }
       }
     }
     if (figure == 'bishop') {
@@ -365,12 +392,32 @@ export class AppComponent implements OnInit {
         positionX,
         positionY
       }
+      if (this.checkService.checkScanner(this) && this.checkKing == 'black') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'white', this)) {
+          this.isGameOver = true;
+        }
+      }
     }
     if (figure == 'knight') {
       this.chooseKnight = {
         ...this.chooseKnight,
         positionX,
         positionY
+      }
+      if (this.checkService.checkScanner(this) && this.checkKing == 'black') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'white', this)) {
+          this.isGameOver = true;
+        }
       }
     }
 
@@ -381,13 +428,32 @@ export class AppComponent implements OnInit {
         positionX,
         positionY
       }
-      console.log(this.chooseQueen)
+      if (this.checkService.checkScanner(this) && this.checkKing == 'white') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'black', this)) {
+          this.isGameOver = true;
+        }
+      }
     }
     if (figure == 'black-rock') {
       this.chooseBlackRock = {
         ...this.chooseBlackRock,
         positionX,
         positionY
+      }
+      if (this.checkService.checkScanner(this) && this.checkKing == 'white') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'black', this)) {
+          this.isGameOver = true;
+        }
       }
     }
     if (figure == 'black-bishop') {
@@ -396,12 +462,32 @@ export class AppComponent implements OnInit {
         positionX,
         positionY
       }
+      if (this.checkService.checkScanner(this) && this.checkKing == 'white') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'black', this)) {
+          this.isGameOver = true;
+        }
+      }
     }
     if (figure == 'black-knight') {
       this.chooseBlackKnight = {
         ...this.chooseBlackKnight,
         positionX,
         positionY
+      }
+      if (this.checkService.checkScanner(this) && this.checkKing == 'white') {
+        console.log('ქიში');
+        this.checkMaker = {
+          positionX,
+          positionY
+        }
+        if (this.gameOverService.end(this.gameOverService.gameOver({ positionX, positionY }, this), 'black', this)) {
+          this.isGameOver = true;
+        }
       }
     }
     this.chooseWhite = false;
@@ -416,8 +502,9 @@ export class AppComponent implements OnInit {
     this.isBlackMove = false;
     this.chooseWhite = false;
     this.chooseBlack = false;
-    this.isSubmited = false;
+    this.isSubmited = true;
     this.check = false;
+    this.lastFigureColor='';
     this.deletedBlackFigure = [];
     this.deletedWhiteFigure = [];
 
@@ -464,7 +551,6 @@ export class AppComponent implements OnInit {
       positionY: 2,
       positionX: 1
     }
-
 
     this.whitePawn1 = {
       name: 'white-pawn1',

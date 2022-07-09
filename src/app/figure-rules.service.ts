@@ -13,11 +13,11 @@ import { GameOverService } from './game-over.service';
 export class FigureRulesService {
 
   constructor(
-    private figureFunctionService:FigureFunctionService,
-    private figureMoveService:FigureMoveService,
-    private checkService:CheckService,
-    private gameOverService:GameOverService
-    ) { }
+    private figureFunctionService: FigureFunctionService,
+    private figureMoveService: FigureMoveService,
+    private checkService: CheckService,
+    private gameOverService: GameOverService
+  ) { }
 
   changePosition(positionX: number, positionY: number, app: AppComponent) {
     if (this.figureFunctionService.checkFigure(positionX, positionY, app)) {
@@ -28,7 +28,25 @@ export class FigureRulesService {
         }
       }
 
+      if (
+        (app.isWhiteMove && this.figureFunctionService.getFigureColor(positionX, positionY, app) == 'black' && app.lastFigureColor != 'white')
+        ||
+        (app.isBlackMove && this.figureFunctionService.getFigureColor(positionX, positionY, app) == 'white' && app.lastFigureColor != 'black')
+      ) {
+        
+        return;
+      } else if (
+        (app.isWhiteMove && app.lastFigureColor != 'white')
+        ||
+        (app.isBlackMove && app.lastFigureColor != 'black')) {
+        app.nextPosition.positionX = positionX;
+        app.nextPosition.positionY = positionY;
+      }
+
     } if (!this.figureFunctionService.checkFigure(positionX, positionY, app) || this.figureFunctionService.checkFigure(positionX, positionY, app)) {
+
+      app.lastFigureColor = this.figureFunctionService.getFigureColor(positionX, positionY, app);
+
       if (this.figureFunctionService.scannFigure(app.whiteKing, app.nextPosition.positionX, app.nextPosition.positionY)) {
         if (this.figureMoveService.checkKing(app.nextPosition.positionX, app.nextPosition.positionY, positionX, positionY, app).find(x => x.positionX == positionX && x.positionY == positionY)) {
           if (app.isWhiteMove) {
@@ -370,7 +388,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackKing = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -406,7 +424,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackRock = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -448,7 +466,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackBishop = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -490,7 +508,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackKnight = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -533,8 +551,8 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-           
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               console.log('shemovedi');
               app.blackQueen = saveFigure;
               if (app.isKillTarget) {
@@ -581,7 +599,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackRock2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -623,7 +641,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackBishop2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -665,7 +683,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackKnight2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -707,7 +725,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn1 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -749,7 +767,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -790,7 +808,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn3 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -831,7 +849,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn4 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -872,7 +890,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn5 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -913,7 +931,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn6 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -954,7 +972,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn7 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -995,7 +1013,7 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.blackPawn8 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -1412,7 +1430,7 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.chooseBlackQueen = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -1494,7 +1512,7 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.chooseBlackRock = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -1576,7 +1594,7 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.chooseBlackBishop = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
@@ -1658,7 +1676,7 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing =='black' && this.checkService.checkScanner(app)) {
+            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
               app.chooseBlackKnight = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
