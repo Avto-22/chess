@@ -11,7 +11,7 @@
     width: 450px;
     height: 480px;
     margin-top: 60px;
-    position:relative;
+    position: relative;
 }
 
 div {
@@ -38,23 +38,23 @@ div {
     background-color: gold;
 }
 
-.green-tray {
-    background-color: green;
+.brown-tray {
+    background-color: rgba(66,40,14,.9);
 }
 
-.green {
-    background-color: green;
+.brown {
+    background-color: rgba(66,40,14,.9);
 }
 
 .submit {
     cursor: pointer;
-    margin-top:30px;
-    width:60px;
-    height:60px;
-   display: flex;
-   left:48%;
-   right:auto;
-   position:sticky;
+    margin-top: 30px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    left: 48%;
+    right: auto;
+    position: sticky;
 }
 
 .rotate-board {
@@ -65,76 +65,128 @@ div {
 .kill-black-figure {
     display: flex;
     justify-content: center;
-    width: 450px;
+    width: 98%;
     margin-left: auto;
     margin-right: auto;
     flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .kill-white-figure img,
-.kill-black-figure img{
-    width: 50px;
-    height:50px;
-    margin-top: 5px;
+.kill-black-figure img {
+    width: 40px;
+    height: 40px;
+   margin-top:5px;
 }
 
-.choose-figure{
-    position:fixed;
-    top:300px;
-    left:10%;
-    right:10%;
-    display:flex;
+.choose-figure {
+    position: fixed;
+    top: 300px;
+    left: 10%;
+    right: 10%;
+    display: flex;
     justify-content: center;
-    background-color:white;
-    border:10px solid black;
-    border-radius:100px;
+    background-color: white;
+    border: 10px solid black;
+    border-radius: 100px;
 }
 
-.choose-figure img{
-    width:100px;
-    height:100px;
-    margin:5px;
-    cursor:pointer;
-    box-sizing:border-box;
+.choose-figure img {
+    width: 100px;
+    height: 100px;
+    margin: 5px;
+    cursor: pointer;
+    box-sizing: border-box;
 }
 
-.GameOver{
-    position:fixed;
-    width:100%;
-    display:flex;
+.GameOver {
+    position: fixed;
+    width: 100%;
+    display: flex;
     flex-direction: column;
-    top:25vh;
-    left:0px;
+    top:0px;
+    height: 95vh;
+    left: 0px;
     background-color: rgba(0, 0, 0, 0.786);
-    padding-top:20px;
-    padding-bottom:20px;
+    padding-top: 150px;
+    padding-bottom: 20px;
+    
 }
-.GameOver p{
+
+.GameOver p {
     text-align: center;
-    color:white;
+    color: white;
     font-size: 30px;
     font-weight: bolder;
+    cursor:pointer;
 }
 
-.GameOver .text{
-    color:red;
+.GameOver .text {
+    color: red;
 }
 
-.GameOver .rematch{
+.GameOver .rematch {
     color: goldenrod;
     font-weight: bolder;
     font-size: xx-large;
-    cursor:pointer;
+    cursor: pointer;
     transition: .5s;
 }
 
-.GameOver .rematch:hover{
+.GameOver .rematch:hover {
     color: greenyellow;
 }
 
-@media(max-width:528px){
-    .chess-board{
-        margin-left: 10px;
-        margin-right: 10px;
+@media(max-width:768px) {
+    .submit {
+        display: none;
     }
+}
+
+@media(max-width:500px) {
+    .chess-board {
+        margin-left: 30px;
+        margin-right:0px;
+        width: 100%;
+        
+    }
+
+    .tray {
+         width: 60px;
+        height: 60px;
+    }
+
+}
+
+@media(max-width:490px){
+    .chess-board{
+        margin-left:15px;
+    }
+}
+
+
+@media(max-width:480px){
+    .chess-board{
+        margin-left:10px;
+    }
+}
+
+@media(max-width:450px) {
+    .chess-board{
+        height: 85vw;
+         width: 85vw;
+         margin-left: 3vw;
+    }
+
+    .tray{
+         width: 10.625vw;
+        height: 10.625vw;
+    }
+}
+
+@media(max-width:430px) {
+    .chess-board{
+        margin-top: 150px;
+    }
+   
 }

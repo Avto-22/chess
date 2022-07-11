@@ -33,7 +33,7 @@ export class FigureRulesService {
         ||
         (app.isBlackMove && this.figureFunctionService.getFigureColor(positionX, positionY, app) == 'white' && app.lastFigureColor != 'black')
       ) {
-        
+
         return;
       } else if (
         (app.isWhiteMove && app.lastFigureColor != 'white')
@@ -61,14 +61,13 @@ export class FigureRulesService {
               app.whiteKing = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
+              }else{
+                app.isWhiteMove = false;
+                app.isBlackMove = true;
               }
               console.log('ქიში გეხსნება მეგობარო');
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -97,6 +96,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -106,10 +108,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -134,10 +132,14 @@ export class FigureRulesService {
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               app.whiteBishop = saveFigure;
+
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -147,10 +149,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -179,6 +177,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -188,10 +189,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -221,6 +218,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -231,10 +231,7 @@ export class FigureRulesService {
             }
 
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
+            
             return;
           }
           else {
@@ -266,6 +263,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -275,10 +275,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -308,6 +304,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -317,10 +316,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -350,6 +345,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -359,10 +357,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -388,15 +382,26 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackKing = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
+            if (
+              (!this.checkService.checkScanner(app) && app.checkKing != 'black')
+              ||
+              (app.checkKing != 'black' && !this.checkService.checkScanner(app))
+            ) {
               app.isBlackMove = false;
               app.isWhiteMove = true;
             }
@@ -424,12 +429,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackRock = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -439,10 +451,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -466,12 +474,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackBishop = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -481,10 +496,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -508,12 +519,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackKnight = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -523,10 +541,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -552,13 +566,19 @@ export class FigureRulesService {
               positionY
             }
 
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
-              console.log('shemovedi');
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackQueen = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -569,10 +589,6 @@ export class FigureRulesService {
             }
 
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           }
           else {
@@ -599,12 +615,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackRock2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -614,10 +637,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -641,12 +660,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackBishop2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -656,10 +682,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -683,12 +705,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackKnight2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -698,10 +727,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -725,12 +750,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn1 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -740,10 +772,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -767,12 +795,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn2 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -782,10 +817,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -808,12 +839,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn3 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -823,10 +861,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -849,12 +883,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn4 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -864,10 +905,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -890,12 +927,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn5 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -905,10 +949,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -931,12 +971,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn6 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -946,10 +993,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -972,12 +1015,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn7 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -987,10 +1037,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1013,12 +1059,19 @@ export class FigureRulesService {
               positionX,
               positionY
             }
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.blackPawn8 = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1028,10 +1081,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1062,6 +1111,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1071,10 +1123,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
 
             return;
           } else {
@@ -1105,6 +1153,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1114,10 +1165,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1146,6 +1193,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1155,10 +1205,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1187,6 +1233,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1196,10 +1245,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1228,6 +1273,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1237,10 +1285,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1269,6 +1313,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1278,10 +1325,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1310,6 +1353,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1319,10 +1365,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1352,6 +1394,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1361,10 +1406,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1395,6 +1436,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1404,7 +1448,7 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
+            if (!this.checkService.checkScanner(app) && app.checkKing != 'white') {
               app.isWhiteMove = false;
               app.isBlackMove = true;
             }
@@ -1430,12 +1474,19 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.chooseBlackQueen = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1445,10 +1496,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1477,6 +1524,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1486,10 +1536,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1512,12 +1558,19 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.chooseBlackRock = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1527,10 +1580,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1559,6 +1608,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1568,7 +1620,7 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
+            if (!this.checkService.checkScanner(app) && app.checkKing != 'white') {
               app.isWhiteMove = false;
               app.isBlackMove = true;
             }
@@ -1594,12 +1646,19 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.chooseBlackBishop = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1609,10 +1668,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1641,6 +1696,9 @@ export class FigureRulesService {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = false;
+              app.isBlackMove = true;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'black') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1650,10 +1708,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'white')) {
-              app.isWhiteMove = false;
-              app.isBlackMove = true;
-            }
             return;
           } else {
             app.nextPosition.positionX = positionX;
@@ -1676,12 +1730,19 @@ export class FigureRulesService {
               positionX: positionX,
               positionY: positionY
             };
-            if (app.checkKing == 'black' && this.checkService.checkScanner(app)) {
+            if (
+              (app.checkKing == 'black' && this.checkService.checkScanner(app))
+              ||
+              (this.checkService.checkScanner(app) && app.checkKing == 'black')
+            ) {
               app.chooseBlackKnight = saveFigure;
               if (app.isKillTarget) {
                 this.figureFunctionService.deleteOrRestoreFigure(false, true, app.lastKilledFigure.killedName, app);
               }
               console.log('ქიში გეხსნება მეგობარო');
+            }else{
+              app.isWhiteMove = true;
+              app.isBlackMove = false;
             }
             if (this.checkService.checkScanner(app) && app.checkKing == 'white') {
               if (app.checkMaker.positionX == saveFigure.positionX && app.checkMaker.positionY == saveFigure.positionY) {
@@ -1691,11 +1752,6 @@ export class FigureRulesService {
               }
             }
             app.isKillTarget = false;
-            if (!(this.checkService.checkScanner(app) && app.checkKing == 'black')) {
-              app.isBlackMove = false;
-              app.isWhiteMove = true;
-            }
-
             return;
           } else {
             app.nextPosition.positionX = positionX;
